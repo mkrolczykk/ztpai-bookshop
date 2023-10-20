@@ -1,0 +1,9 @@
+method_name,method_cost,currency_id
+Standard,5.9,1
+Priority,8.9,1
+Express,11.9,1
+International,24.5,1
+Standard,5.9,3
+Priority,12,3
+Express,15,3
+International,50,3

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="202305120009-0" author="mkrolczyk">
+        <createTable tableName="shopping_cart" remarks="Used to store user shopping cart">
+            <column name="user_id" type="BIGINT" remarks="The unique ID of the user">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="book_id" type="BIGINT" remarks="The unique id to identify the book">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="amount" type="INT" defaultValue="1" remarks="The number of books of a given choice">
+                <constraints nullable="false"/>
+            </column>
+            <column name="added_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the item is added to shopping cart">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_shopping_cart_user_fk"
+                baseTableName="shopping_cart"
+                baseColumnNames="user_id"
+                referencedTableName="system_user"
+                referencedColumnNames="user_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_shopping_cart_book_fk"
+                baseTableName="shopping_cart"
+                baseColumnNames="book_id"
+                referencedTableName="book"
+                referencedColumnNames="book_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addUniqueConstraint constraintName="unique_cart_user_id_book_id" tableName="shopping_cart" columnNames="user_id, book_id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

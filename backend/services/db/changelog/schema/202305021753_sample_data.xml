@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="202305021753-0" author="mkrolczyk">
+        <loadData file="data/author.csv" tableName="author" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-1" author="mkrolczyk">
+        <loadData file="data/publisher.csv" tableName="publisher" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-2" author="mkrolczyk">
+        <loadData file="data/book_language.csv" tableName="book_language" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-3" author="mkrolczyk">
+        <loadData file="data/book_genre.csv" tableName="book_genre" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-4" author="mkrolczyk">
+        <sqlFile dbms="postgresql" path="data/sql/book.sql" relativeToChangelogFile="true" />
+    </changeSet>
+    <changeSet id="202305021753-5" author="mkrolczyk">
+        <loadData file="data/book_author.csv" tableName="book_author" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-6" author="mkrolczyk">
+        <loadData file="data/address_status.csv" tableName="address_status" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-7" author="mkrolczyk">
+        <loadData file="data/country.csv" tableName="country" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-8" author="mkrolczyk">
+        <loadData file="data/address.csv" tableName="address" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-9" author="mkrolczyk">
+        <loadData file="data/system_user.csv" tableName="system_user" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-10" author="mkrolczyk">
+        <loadData file="data/user_role.csv" tableName="user_role" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-11" author="mkrolczyk">
+        <loadData file="data/system_user_address.csv" tableName="system_user_address" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-12" author="mkrolczyk">
+        <loadData file="data/currency.csv" tableName="currency" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-13" author="mkrolczyk">
+        <loadData file="data/shipping_method.csv" tableName="shipping_method" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-14" author="mkrolczyk">
+        <loadData file="data/system_user_favorite_book.csv" tableName="system_user_favorite_book" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-15" author="mkrolczyk">
+        <loadData file="data/order.csv" tableName="order" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-16" author="mkrolczyk">
+        <loadData file="data/order_status.csv" tableName="order_status" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-17" author="mkrolczyk">
+        <loadData file="data/order_history.csv" tableName="order_history" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="202305021753-18" author="mkrolczyk">
+        <loadData file="data/book_price.csv" tableName="book_price" relativeToChangelogFile="true"/>
+    </changeSet>
+
+</databaseChangeLog>
