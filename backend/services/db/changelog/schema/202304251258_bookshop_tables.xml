@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="202304251258-0" author="mkrolczyk">
+        <createTable tableName="author" remarks="Used to store book authors">
+            <column name="author_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the author">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="author_name" type="VARCHAR(200)" remarks="Author name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-1" author="mkrolczyk">
+        <createTable tableName="publisher" remarks="Used to store book publishers">
+            <column name="publisher_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the publisher">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="publisher_name" type="VARCHAR(200)" remarks="Author name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-2" author="mkrolczyk">
+        <createTable tableName="book_language" remarks="Used to store book languages">
+            <column name="language_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the language">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="language_code" type="VARCHAR(20)" remarks="Language code">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_name" type="VARCHAR(50)" remarks="Language name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-3" author="mkrolczyk">
+        <createTable tableName="book_genre" remarks="Used to store book genres">
+            <column name="genre_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the genre">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="genre" type="VARCHAR(50)" remarks="Genre name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the genre is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-4" author="mkrolczyk">
+        <createTable tableName="currency" remarks="Used to store available currencies">
+            <column name="currency_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the currency">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="currency_name" type="VARCHAR(50)" remarks="Currency name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shortcut" type="VARCHAR(10)" remarks="Currency shortcut">
+                <constraints nullable="true"/>
+            </column>
+            <column name="added_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the currency is added">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-5" author="mkrolczyk" >
+        <createTable tableName="book" remarks="Used to store the book data">
+            <column name="book_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the book">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(100)" remarks="The book title">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meta_title" type="VARCHAR(100)" remarks="The meta title to be used for browser title and SEO">
+                <constraints nullable="true"/>
+            </column>
+            <column name="summary" type="VARCHAR(400)" remarks="The summary section to mention the key highlights of book">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT" remarks="Section for a detailed description of the book">
+                <constraints nullable="true"/>
+            </column>
+            <column name="num_pages" type="INT" remarks="Number of pages">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slug" type="VARCHAR(100)" remarks="The slug (unique identifier) to form the URL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_id" type="BIGINT" remarks="The genre of the book">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre_id" type="BIGINT" remarks="The genre of the book">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publisher_id" type="BIGINT" remarks="The publisher of the book">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the book is added">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" remarks="Stores the date and time at which the book record is updated">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="fk_book_language"
+                baseTableName="book"
+                baseColumnNames="language_id"
+                referencedTableName="book_language"
+                referencedColumnNames="language_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="fk_book_genre"
+                baseTableName="book"
+                baseColumnNames="genre_id"
+                referencedTableName="book_genre"
+                referencedColumnNames="genre_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="fk_book_publisher"
+                baseTableName="book"
+                baseColumnNames="publisher_id"
+                referencedTableName="publisher"
+                referencedColumnNames="publisher_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <createIndex indexName="uq_title" tableName="book" unique="true">
+            <column name="title"/>
+        </createIndex>
+
+        <createIndex indexName="uq_slug" tableName="book" unique="true">
+            <column name="slug"/>
+        </createIndex>
+
+        <createIndex indexName="idx_book_genre" tableName="book">
+            <column name="genre_id"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet id="202304251258-6" author="mkrolczyk">
+        <createTable tableName="book_price" remarks="Used to store books prices">
+            <column name="book_id" type="BIGINT" remarks="The unique ID of the book">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="currency_id" type="BIGINT" remarks="The price currency">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)" remarks="The price of the book">
+                <constraints nullable="false"/>
+            </column>
+            <column name="added_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the book price is added">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="book_price_book_fk"
+                baseTableName="book_price"
+                baseColumnNames="book_id"
+                referencedTableName="book"
+                referencedColumnNames="book_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="book_price_currency_fk"
+                baseTableName="book_price"
+                baseColumnNames="currency_id"
+                referencedTableName="currency"
+                referencedColumnNames="currency_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addUniqueConstraint constraintName="unique_book_id_currency_id" tableName="book_price" columnNames="book_id, currency_id"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-7" author="mkrolczyk">
+        <createTable tableName="book_author" remarks="Used to store book authors">
+            <column name="book_id" type="BIGINT" remarks="The unique ID of the the book">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="author_id" type="BIGINT" remarks="The unique ID of the author">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="book_author_book_fk"
+                baseTableName="book_author"
+                baseColumnNames="book_id"
+                referencedTableName="book"
+                referencedColumnNames="book_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="book_author_author_fk"
+                baseTableName="book_author"
+                baseColumnNames="author_id"
+                referencedTableName="author"
+                referencedColumnNames="author_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addUniqueConstraint constraintName="unique_book_id_author_id" tableName="book_author" columnNames="book_id, author_id"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-8" author="mkrolczyk">
+        <createTable tableName="address_status" remarks="Used to store customers addresses status">
+            <column name="status_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the address status">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="address_status" type="VARCHAR(30)" remarks="Address status">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-9" author="mkrolczyk">
+        <createTable tableName="country" remarks="Used to store address country">
+            <column name="country_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the address country">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="country_name" type="VARCHAR(30)" remarks="Country name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-10" author="mkrolczyk">
+        <createTable tableName="address" remarks="Used to store address">
+            <column name="address_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the address">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="street_name" type="VARCHAR(150)" remarks="Street name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street_number" type="VARCHAR(30)" remarks="Street number">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="VARCHAR(100)" remarks="City">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="BIGINT" remarks="Country">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="address_country_country_fk"
+                baseTableName="address"
+                baseColumnNames="country_id"
+                referencedTableName="country"
+                referencedColumnNames="country_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-11" author="mkrolczyk">
+        <createTable tableName="system_user_address" remarks="Used to store user role">
+            <column name="user_id" type="BIGINT" remarks="The unique ID of the user">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="address_id" type="BIGINT" remarks="The unique ID of the address">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="status_id" type="BIGINT" remarks="Status of the address">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_address_user_fk"
+                baseTableName="system_user_address"
+                baseColumnNames="user_id"
+                referencedTableName="system_user"
+                referencedColumnNames="user_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_address_address_fk"
+                baseTableName="system_user_address"
+                baseColumnNames="address_id"
+                referencedTableName="address"
+                referencedColumnNames="address_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_address_role_user_fk"
+                baseTableName="system_user_address"
+                baseColumnNames="status_id"
+                referencedTableName="address_status"
+                referencedColumnNames="status_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-12" author="mkrolczyk">
+        <createTable tableName="shipping_method" remarks="Used to store shipping information">
+            <column name="method_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the address status">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="method_name" type="VARCHAR(150)" remarks="Name of the method">
+                <constraints nullable="false"/>
+            </column>
+            <column name="method_cost" type="DECIMAL(10,2)" remarks="Cost of the method">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_id" type="BIGINT" remarks="The shipping method cost currency">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="fk_shipping_method_currency"
+                baseTableName="shipping_method"
+                baseColumnNames="currency_id"
+                referencedTableName="currency"
+                referencedColumnNames="currency_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-13" author="mkrolczyk">
+        <createTable tableName="order" remarks="Used to store system orders">
+            <column name="order_id" type="BIGINT" autoIncrement="true" remarks="The unique ID of the order">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT" remarks="The unique ID of the system user">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shipping_method_id" type="BIGINT" remarks="The unique ID of shipping method">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_id" type="BIGINT" remarks="The unique ID of address">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_exec" type="BIGINT" remarks="The unique ID of the order employee executor">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the order record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="order_system_user_fk"
+                baseTableName="order"
+                baseColumnNames="user_id"
+                referencedTableName="system_user"
+                referencedColumnNames="user_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="order_shipping_method_fk"
+                baseTableName="order"
+                baseColumnNames="shipping_method_id"
+                referencedTableName="shipping_method"
+                referencedColumnNames="method_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_address_role_user_fk"
+                baseTableName="order"
+                baseColumnNames="address_id"
+                referencedTableName="address"
+                referencedColumnNames="address_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="order_system_employee_fk"
+                baseTableName="order"
+                baseColumnNames="order_exec"
+                referencedTableName="system_user"
+                referencedColumnNames="user_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-14" author="mkrolczyk">
+        <createTable tableName="order_status" remarks="Used to store order status information">
+            <column name="status_id" type="BIGINT" autoIncrement="true" remarks="The unique id to identify the order status">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(150)" remarks="Status of the order">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the status is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202304251258-15" author="mkrolczyk">
+        <createTable tableName="order_line" remarks="Used to store order item">
+            <column name="line_id" type="BIGINT" autoIncrement="true" remarks="The unique ID of the order line">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT" remarks="The unique ID of the order">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="BIGINT" remarks="The unique ID of the book">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="BIGINT" remarks="Amount of book">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="DECIMAL(15,2)" remarks="The price of items in order line">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_id" type="BIGINT" remarks="The currency">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the order record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="order_line_order_fk"
+                baseTableName="order_line"
+                baseColumnNames="order_id"
+                referencedTableName="order"
+                referencedColumnNames="order_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="order_line_book_fk"
+                baseTableName="order_line"
+                baseColumnNames="book_id"
+                referencedTableName="book"
+                referencedColumnNames="book_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="fk_order_line_currency"
+                baseTableName="order_line"
+                baseColumnNames="currency_id"
+                referencedTableName="currency"
+                referencedColumnNames="currency_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-16" author="mkrolczyk">
+        <createTable tableName="order_history" remarks="Used to store orders history">
+            <column name="history_id" type="BIGINT" autoIncrement="true" remarks="The unique ID of the history of the order">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT" remarks="The unique ID of the order">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="BIGINT" remarks="The unique ID of the order status">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the record is created">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="order_history_order_fk"
+                baseTableName="order_history"
+                baseColumnNames="order_id"
+                referencedTableName="order"
+                referencedColumnNames="order_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="order_history_book_fk"
+                baseTableName="order_history"
+                baseColumnNames="status_id"
+                referencedTableName="order_status"
+                referencedColumnNames="status_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+    </changeSet>
+
+    <changeSet id="202304251258-17" author="mkrolczyk">
+        <createTable tableName="system_user_favorite_book" remarks="Used to store user favourite books">
+            <column name="user_id" type="BIGINT" remarks="The unique ID of the user">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="book_id" type="BIGINT" remarks="The unique id to identify the book">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="added_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="Stores the date and time at which the user favorite book is added">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_favorite_book_user_fk"
+                baseTableName="system_user_favorite_book"
+                baseColumnNames="user_id"
+                referencedTableName="system_user"
+                referencedColumnNames="user_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addForeignKeyConstraint
+                constraintName="system_user_favorite_book_book_fk"
+                baseTableName="system_user_favorite_book"
+                baseColumnNames="book_id"
+                referencedTableName="book"
+                referencedColumnNames="book_id"
+                onDelete="NO ACTION"
+                onUpdate="NO ACTION"/>
+
+        <addUniqueConstraint constraintName="unique_user_id_book_id" tableName="system_user_favorite_book" columnNames="user_id, book_id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

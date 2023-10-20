@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <include file="schema/202304190103_user_tables.xml" relativeToChangelogFile="true"/>
+    <include file="schema/202304251258_bookshop_tables.xml" relativeToChangelogFile="true"/>
+    <include file="schema/202305021753_sample_data.xml" relativeToChangelogFile="true"/>
+    <include file="schema/202305081104_order_line_sample_data.xml" relativeToChangelogFile="true"/>
+    <include file="schema/202305120009_shopping_card_table.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>
