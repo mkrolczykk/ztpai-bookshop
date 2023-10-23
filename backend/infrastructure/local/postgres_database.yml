@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  bookshop_db:
+    image: postgres:${POSTGRES_VERSION:-latest}
+    container_name: ${POSTGRES_DB_HOST_NAME}
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - '${POSTGRES_DB_HOST_PORT}:${POSTGRES_DB_INTERNAL_PORT}'
+    volumes:
+      - "./containers-data/bookshop_db/db-1/data:/var/lib/postgresql/data/:z"
+    networks:
+      - ${GLOBAL_NETWORK:-services}

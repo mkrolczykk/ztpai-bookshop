@@ -154,3 +154,5 @@
 ######################
 backend/infrastructure/local/containers-data/
 frontend/infrastructure/local/containers-data/
+######################
+backend/infrastructure/local/.env

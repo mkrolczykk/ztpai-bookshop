@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  auth-service-1:
+    image: ${GROUP_ID}/auth.service:${AUTH_SERVICE_VERSION:-latest}
+    container_name: ${AUTH_SERVICE_1_HOST_NAME}
+    user: root
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    environment:
+      - "SERVER_PORT=${AUTH_SERVICE_1_SERVER_PORT}"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://${POSTGRES_DB_HOST_NAME}:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
+      - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
+      - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+  book-service-1:
+    image: ${GROUP_ID}/book.service:${BOOK_SERVICE_VERSION:-latest}
+    container_name: ${BOOK_SERVICE_1_HOST_NAME}
+    user: root
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+#    entrypoint: ['check-auth-server-started.sh']
+    environment:
+      - "SERVER_PORT=${BOOK_SERVICE_1_SERVER_PORT}"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://${POSTGRES_DB_HOST_NAME}:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
+      - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
+      - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
+    volumes:
+      - "./scripts/check-auth-server-started.sh:/usr/local/bin/check-auth-server-started.sh"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
