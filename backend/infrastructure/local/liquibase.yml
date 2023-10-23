@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  liquibase:
+    image: liquibase/liquibase:${LIQUIBASE_VERSION:-latest}
+    container_name: liquibase
+    depends_on:
+      bookshop_db:
+        condition: service_healthy
+    # Run the liquibase update
+    command: ['update']
+    environment:
+      LIQUIBASE_DRIVER: org.postgresql.Driver
+      LIQUIBASE_COMMAND_CHANGELOG_FILE: db.changelog.xml
+      LIQUIBASE_COMMAND_URL: 'jdbc:postgresql://${POSTGRES_DB_HOST_NAME}:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}'
+      LIQUIBASE_COMMAND_USERNAME: '${POSTGRES_USER}'
+      LIQUIBASE_COMMAND_PASSWORD: '${POSTGRES_PASSWORD}'
+    volumes:
+      - ../../services/db/changelog:/liquibase/changelog/
+    networks:
+      - ${GLOBAL_NETWORK:-services}
