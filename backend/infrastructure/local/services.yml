@@ -3,12 +3,14 @@ services:
   auth-service-1:
     image: ${GROUP_ID}/auth.service:${AUTH_SERVICE_VERSION:-latest}
     container_name: ${AUTH_SERVICE_1_HOST_NAME}
+    ports:
+      - "${AUTH_SERVICE_1_SERVER_PORT}:${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
     user: root
     depends_on:
       postgres_db:
         condition: service_healthy
     environment:
-      - "SERVER_PORT=${AUTH_SERVICE_1_SERVER_PORT}"
+      - "SERVER_PORT=${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
       - "SPRING_DATASOURCE_URL=jdbc:postgresql://${POSTGRES_DB_HOST_NAME}:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
       - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
       - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
@@ -17,13 +19,15 @@ services:
   book-service-1:
     image: ${GROUP_ID}/book.service:${BOOK_SERVICE_VERSION:-latest}
     container_name: ${BOOK_SERVICE_1_HOST_NAME}
+    ports:
+      - "${BOOK_SERVICE_1_SERVER_PORT}:${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
     user: root
     depends_on:
       postgres_db:
         condition: service_healthy
 #    entrypoint: ['check-auth-server-started.sh']
     environment:
-      - "SERVER_PORT=${BOOK_SERVICE_1_SERVER_PORT}"
+      - "SERVER_PORT=${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
       - "SPRING_DATASOURCE_URL=jdbc:postgresql://${POSTGRES_DB_HOST_NAME}:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
       - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
       - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
