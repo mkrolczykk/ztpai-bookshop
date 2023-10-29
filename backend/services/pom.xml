@@ -29,6 +29,8 @@
         <log4j.core.version>2.20.0</log4j.core.version>
         <log4j.core.version>2.20.0</log4j.core.version>
         <org.modelmapper.version>3.1.1</org.modelmapper.version>
+<!--        <spock-core-version>2.4-M1-groovy-4.0</spock-core-version>-->
+<!--        <groovy-version>2.4.21</groovy-version>-->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
     </properties>
 
@@ -146,24 +148,24 @@
                 <version>${spring.framework.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.spockframework</groupId>
-                <artifactId>spock-core</artifactId>
-                <version>${spock-core-version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.spockframework</groupId>
-                <artifactId>spock-spring</artifactId>
-                <version>${spock-core-version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-                <version>${groovy-version}</version>
-                <scope>test</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.spockframework</groupId>-->
+<!--                <artifactId>spock-core</artifactId>-->
+<!--                <version>${spock-core-version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.spockframework</groupId>-->
+<!--                <artifactId>spock-spring</artifactId>-->
+<!--                <version>${spock-core-version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.codehaus.groovy</groupId>-->
+<!--                <artifactId>groovy-all</artifactId>-->
+<!--                <version>${groovy-version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
