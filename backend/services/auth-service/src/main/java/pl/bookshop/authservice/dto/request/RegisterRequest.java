@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.bookshop.common.util.messages.Messages;
+import pl.bookshop.auth.util.messages.Messages;
 
 @Data
 @NoArgsConstructor

@@ -5,10 +5,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import pl.bookshop.common.util.entity.UserInfo;
-import pl.bookshop.common.util.exception.dto.ValidationErrorList;
-import pl.bookshop.common.util.messages.MessagesEnum;
-import pl.bookshop.common.util.service.repository.UserInfoRepository;
+import pl.bookshop.auth.util.entity.UserInfo;
+import pl.bookshop.auth.util.exception.dto.ValidationErrorList;
+import pl.bookshop.auth.util.messages.MessagesEnum;
+import pl.bookshop.auth.util.service.repository.UserInfoRepository;
 
 import java.util.function.Predicate;
 

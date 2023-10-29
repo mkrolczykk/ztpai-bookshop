@@ -21,13 +21,13 @@ import pl.bookshop.authservice.dto.request.RegisterRequest;
 import pl.bookshop.authservice.dto.request.UserNameValidationRequest;
 import pl.bookshop.authservice.dto.response.AuthResponse;
 import pl.bookshop.authservice.service.AuthService;
-import pl.bookshop.common.util.config.UserInfoUserDetails;
-import pl.bookshop.common.util.entity.UserInfo;
-import pl.bookshop.common.util.exception.dto.ValidationErrorList;
-import pl.bookshop.common.util.mapper.DTO;
-import pl.bookshop.common.util.messages.MessagesEnum;
-import pl.bookshop.common.util.messages.Translator;
-import pl.bookshop.common.util.service.JwtService;
+import pl.bookshop.auth.util.config.UserInfoUserDetails;
+import pl.bookshop.auth.util.entity.UserInfo;
+import pl.bookshop.auth.util.exception.dto.ValidationErrorList;
+import pl.bookshop.auth.util.mapper.DTO;
+import pl.bookshop.auth.util.messages.MessagesEnum;
+import pl.bookshop.auth.util.messages.Translator;
+import pl.bookshop.auth.util.service.JwtService;
 
 @RestController
 @RequiredArgsConstructor

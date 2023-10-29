@@ -13,14 +13,14 @@
     <modules>
         <module>auth-service</module>
         <module>book-service</module>
-        <module>modules/common-util</module>
+        <module>modules/auth-util</module>
     </modules>
 
     <properties>
         <java.version>17</java.version>
         <spring.boot.version>3.0.4</spring.boot.version>
         <spring.framework.version>6.0.2</spring.framework.version>
-        <common-util.version>0.0.1-SNAPSHOT</common-util.version>
+        <auth-util.version>0.0.1-SNAPSHOT</auth-util.version>
         <postgres.version>42.5.4</postgres.version>
         <project.lombok.version>1.18.24</project.lombok.version>
         <jwt.version>0.11.5</jwt.version>
@@ -125,8 +125,8 @@
             </dependency>
             <dependency>
                 <groupId>pl.bookshop</groupId>
-                <artifactId>common-util</artifactId>
-                <version>${common-util.version}</version>
+                <artifactId>auth-util</artifactId>
+                <version>${auth-util.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

@@ -18,7 +18,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>pl.bookshop</groupId>
-			<artifactId>common-util</artifactId>
+			<artifactId>auth-util</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

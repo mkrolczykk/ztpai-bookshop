@@ -8,10 +8,10 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pl.bookshop.common.util.exception.ValidationException;
-import pl.bookshop.common.util.exception.dto.ErrorDto;
-import pl.bookshop.common.util.exception.dto.ValidationErrorList;
-import pl.bookshop.common.util.messages.MessagesEnum;
+import pl.bookshop.auth.util.exception.ValidationException;
+import pl.bookshop.auth.util.exception.dto.ErrorDto;
+import pl.bookshop.auth.util.exception.dto.ValidationErrorList;
+import pl.bookshop.auth.util.messages.MessagesEnum;
 
 import java.util.stream.Collectors;
 
