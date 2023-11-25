@@ -1,1 +1,1 @@
-# ztpai-bookshop frontend
+# ztpai-bookshop frontend module
