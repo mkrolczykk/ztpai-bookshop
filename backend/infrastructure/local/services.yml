@@ -2,36 +2,56 @@ version: '3.9'
 services:
   auth-service-1:
     image: ${GROUP_ID}/auth.service:${AUTH_SERVICE_VERSION:-latest}
-    container_name: ${AUTH_SERVICE_1_HOST_NAME}
-    ports:
-      - "${AUTH_SERVICE_1_SERVER_PORT}:${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
+#    ports:
+#      - "${AUTH_SERVICE_1_SERVER_PORT}:${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
     user: root
     depends_on:
-      postgres_db:
-        condition: service_healthy
-    environment:
-      - "SERVER_PORT=${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
-      - "SPRING_DATASOURCE_URL=jdbc:postgresql://${POSTGRES_DB_HOST_NAME}:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
-      - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
-      - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
-    networks:
-      - ${GLOBAL_NETWORK:-services}
-  book-service-1:
-    image: ${GROUP_ID}/book.service:${BOOK_SERVICE_VERSION:-latest}
-    container_name: ${BOOK_SERVICE_1_HOST_NAME}
-    ports:
-      - "${BOOK_SERVICE_1_SERVER_PORT}:${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
-    user: root
-    depends_on:
-      postgres_db:
+      bookshop_db:
         condition: service_healthy
 #    entrypoint: ['check-auth-server-started.sh']
     environment:
-      - "SERVER_PORT=${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
-      - "SPRING_DATASOURCE_URL=jdbc:postgresql://${POSTGRES_DB_HOST_NAME}:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
+      - "SERVER_PORT=${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://bookshop_db:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
       - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
       - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
     volumes:
       - "./scripts/check-auth-server-started.sh:/usr/local/bin/check-auth-server-started.sh"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+  book-service-1:
+    image: ${GROUP_ID}/book.service:${BOOK_SERVICE_VERSION:-latest}
+#    ports:
+#      - "${BOOK_SERVICE_1_SERVER_PORT}:${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
+    user: root
+    depends_on:
+      bookshop_db:
+        condition: service_healthy
+#    entrypoint: ['check-bookservice-server-started.sh']
+    environment:
+      - "SERVER_PORT=${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://bookshop_db:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
+      - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
+      - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
+    volumes:
+      - "./scripts/check-bookservice-server-started.sh:/usr/local/bin/check-bookservice-server-started.sh"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+  gateway-service-1:
+    image: ${GROUP_ID}/gateway.service:${GATEWAY_SERVICE_VERSION:-latest}
+    ports:
+      - "${GATEWAY_SERVICE_1_SERVER_PORT}:${GATEWAY_SERVICE_1_SERVER_INTERNAL_PORT}"
+    depends_on:
+      - auth-service-1
+      - book-service-1
+#    entrypoint: ['check-gatewayservice-server-started.sh']
+    volumes:
+      - "./scripts/check-gatewayservice-server-started.sh:/usr/local/bin/check-gatewayservice-server-started.sh"
+    user: root
+    environment:
+      - "SERVER_PORT=${GATEWAY_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "AUTH-SERVICE_HOST=auth-service-1"
+      - "AUTH-SERVICE_PORT=${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "BOOK-SERVICE-1_HOST=book-service-1"
+      - "BOOK-SERVICE-1_PORT=${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
     networks:
       - ${GLOBAL_NETWORK:-services}

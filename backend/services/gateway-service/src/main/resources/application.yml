@@ -1,0 +1,48 @@
+server:
+  port: 8081
+
+auth-service:
+  host: localhost
+  port: 8190
+
+book-service-1:
+  host: localhost
+  port: 8290
+
+open-api:
+  host: localhost
+  port: ${server.port}
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: http://${auth-service.host}:${auth-service.port}/
+          predicates:
+            - Path=/auth/**
+        - id: bookapp
+          uri: http://${book-service-1.host}:${book-service-1.port}/
+          predicates:
+            - Path=/bookapp/**
+        - id: openAPI
+          uri: http://${open-api.host}:${open-api.port}/
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs/
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: API Gateway Service
+      - url: /auth/v3/api-docs
+        name: Authorization Service
+      - url: /bookapp/v3/api-docs
+        name: Bookshop Service
