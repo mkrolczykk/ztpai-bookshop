@@ -2,6 +2,7 @@ version: '3.9'
 services:
   auth-service-1:
     image: ${GROUP_ID}/auth.service:${AUTH_SERVICE_VERSION:-latest}
+    container_name: auth-service-1
 #    ports:
 #      - "${AUTH_SERVICE_1_SERVER_PORT}:${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
     user: root
@@ -20,6 +21,7 @@ services:
       - ${GLOBAL_NETWORK:-services}
   book-service-1:
     image: ${GROUP_ID}/book.service:${BOOK_SERVICE_VERSION:-latest}
+    container_name: book-service-1
 #    ports:
 #      - "${BOOK_SERVICE_1_SERVER_PORT}:${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
     user: root
@@ -38,6 +40,7 @@ services:
       - ${GLOBAL_NETWORK:-services}
   gateway-service-1:
     image: ${GROUP_ID}/gateway.service:${GATEWAY_SERVICE_VERSION:-latest}
+    container_name: gateway-service-1
     ports:
       - "${GATEWAY_SERVICE_1_SERVER_PORT}:${GATEWAY_SERVICE_1_SERVER_INTERNAL_PORT}"
     depends_on:
