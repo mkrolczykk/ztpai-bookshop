@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition(
 	servers = {
 		@Server(url = "http://localhost:8081/auth", description = "[LOCAL env] API Gateway auth service endpoint"),
-		@Server(url = "http://localhost:8190/auth", description = "[LOCAL env] Auth service direct endpoint")})
+		@Server(url = "http://localhost:8190/auth", description = "[LOCAL env] Auth service endpoint (Default: DISABLED)")})
 public class AuthServiceApplication {
 
 	public static void main(String[] args) {
