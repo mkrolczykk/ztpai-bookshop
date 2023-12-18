@@ -31,7 +31,7 @@ public class OrderLineEntity {
 
     @Basic
     @Column(name = "amount", nullable = false)
-    private Long amount;
+    private Integer amount;
 
     @Basic
     @Column(name = "total_price", nullable = false, precision = 15, scale = 2)
