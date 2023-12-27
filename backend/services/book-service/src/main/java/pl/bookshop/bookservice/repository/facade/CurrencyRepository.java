@@ -8,4 +8,8 @@ public interface CurrencyRepository {
 
     Optional<CurrencyEntity> getCurrencyEntityByShortcut(final String shortcut);
 
+    Optional<CurrencyEntity> findByCurrencyNameIgnoreCase(String name);
+
+    boolean existsByCurrencyName(String name);
+
 }

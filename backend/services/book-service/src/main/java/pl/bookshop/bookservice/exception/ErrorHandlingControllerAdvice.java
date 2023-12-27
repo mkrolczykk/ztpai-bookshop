@@ -39,10 +39,10 @@ public class ErrorHandlingControllerAdvice {
     }
 
     @ExceptionHandler(NotFoundException.class)
-    ResponseEntity<Object> onBookNotFoundException(NotFoundException e, WebRequest request) {
+    ResponseEntity<Object> onNotFoundException(NotFoundException e, WebRequest request) {
 
         final String message = e.getMessage();
-        log.warn("Captured BookNotFoundException: " + message);
+        log.warn("Captured NotFoundException: " + message);
 
         ExceptionResponse response =
                 new ExceptionResponse(

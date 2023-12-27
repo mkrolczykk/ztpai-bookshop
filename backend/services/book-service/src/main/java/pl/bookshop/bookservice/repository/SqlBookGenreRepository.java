@@ -7,6 +7,4 @@ import pl.bookshop.bookservice.repository.facade.BookGenreRepository;
 
 @Repository
 interface SqlBookGenreRepository
-        extends BookGenreRepository, JpaRepository<BookGenreEntity, Long> {
-
-}
+        extends BookGenreRepository, JpaRepository<BookGenreEntity, Long> {}

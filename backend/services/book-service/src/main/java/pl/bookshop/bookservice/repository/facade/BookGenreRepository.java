@@ -9,6 +9,12 @@ public interface BookGenreRepository {
 
     List<BookGenreEntity> findAll();
 
+    Optional<BookGenreEntity> findByGenreIgnoreCase(String genre);
+
     Optional<String> findByGenreId(long id);
+
+    boolean existsByGenre(String genre);
+
+    BookGenreEntity getBookGenreEntityByGenre(String gerne);
 
 }

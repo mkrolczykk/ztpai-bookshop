@@ -1,3 +1,9 @@
 package pl.bookshop.bookservice.repository.facade;
 
-public interface BookPriceRepository {}
+import pl.bookshop.bookservice.entity.BookPriceEntity;
+
+public interface BookPriceRepository {
+
+    BookPriceEntity save(BookPriceEntity entity);
+
+}
