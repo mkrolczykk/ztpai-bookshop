@@ -33,6 +33,19 @@ public class AuthService {
         return repository.save(userInfo);
     }
 
+    @Transactional
+    public UserInfo registerEmployee(UserInfo userInfo) {
+
+        validateRegisterRequest(userInfo);
+
+        userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+        userInfo.setEmployeeRole();
+        userInfo.setEmailAccepted(Boolean.TRUE);    // TODO -> temporary workaround
+        userInfo.setNotifications(Boolean.TRUE);
+
+        return repository.save(userInfo);
+    }
+
     @Transactional(propagation = Propagation.MANDATORY)
     public void validateRegisterRequest(UserInfo userInfo) {
 

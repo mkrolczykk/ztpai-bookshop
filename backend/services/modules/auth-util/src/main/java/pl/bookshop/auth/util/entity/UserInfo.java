@@ -83,4 +83,8 @@ public class UserInfo {
     public void setDefaultRole() {
         setRoles(Set.of(RolesEnum.ROLE_USER));
     }
+
+    public void setEmployeeRole() {
+        setRoles(Set.of(RolesEnum.ROLE_EMPLOYEE));
+    }
 }

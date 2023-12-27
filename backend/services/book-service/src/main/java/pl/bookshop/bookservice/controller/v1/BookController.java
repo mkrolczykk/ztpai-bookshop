@@ -5,9 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.bookshop.auth.util.annotation.AdminAuthority;
 import pl.bookshop.auth.util.annotation.EmployeeAuthority;
-import pl.bookshop.auth.util.annotation.UserAuthority;
 import pl.bookshop.bookservice.dto.request.AddBookReq;
 import pl.bookshop.bookservice.service.BookService;
 

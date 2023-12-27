@@ -15,6 +15,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.bookshop.auth.util.annotation.AdminAuthority;
 import pl.bookshop.authservice.dto.request.AuthRequest;
 import pl.bookshop.authservice.dto.request.EmailValidationRequest;
 import pl.bookshop.authservice.dto.request.RegisterRequest;
@@ -43,6 +44,13 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@DTO(RegisterRequest.class) UserInfo userInfo) {
         authService.registerUser(userInfo);
+        return ResponseEntity.ok().build();
+    }
+
+    @AdminAuthority
+    @PostMapping("/register/employee")
+    public ResponseEntity<?> registerEmployee(@DTO(RegisterRequest.class) UserInfo userInfo) {
+        authService.registerEmployee(userInfo);
         return ResponseEntity.ok().build();
     }
 
