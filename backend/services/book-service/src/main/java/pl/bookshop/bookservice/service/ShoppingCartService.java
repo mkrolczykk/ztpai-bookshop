@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.bookshop.bookservice.dto.OrderLineDto;
+import pl.bookshop.bookservice.dto.response.OrderLineDto;
 import pl.bookshop.bookservice.dto.response.ShoppingCartActionResp;
 import pl.bookshop.bookservice.dto.response.ShoppingCartTotalItemsCountResp;
 import pl.bookshop.bookservice.entity.*;

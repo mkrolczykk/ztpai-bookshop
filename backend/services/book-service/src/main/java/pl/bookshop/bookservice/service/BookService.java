@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.bookshop.bookservice.dto.TopSoldBooksDto;
+import pl.bookshop.bookservice.dto.response.BookDetailDto;
+import pl.bookshop.bookservice.dto.response.BookDto;
+import pl.bookshop.bookservice.dto.response.TopSoldBookDto;
 import pl.bookshop.bookservice.dto.request.AddBookReq;
 import pl.bookshop.bookservice.entity.*;
 import pl.bookshop.bookservice.entity.composedKey.BookAuthorId;
@@ -106,7 +108,17 @@ public class BookService {
                 .build());
     }
 
-    public List<TopSoldBooksDto> getTopSoldBooks(String currency, int limit) {
+    public BookDetailDto getBookById(Long bookId, String currency) {
+        return bookRepository
+                .getBookById(bookId, currency)
+                .orElseThrow(() -> new NotFoundException("No book available with ID: " + bookId + " and currency: " + currency));
+    }
+
+    public List<BookDto> getBooksFromGivenCategory(String category, String currency) {
+        return bookRepository.getBooksFromGivenCategory(category, currency);
+    }
+
+    public List<TopSoldBookDto> getTopSoldBooks(String currency, int limit) {
         return bookRepository.getTopSoldBooks(currency, limit);
     }
 

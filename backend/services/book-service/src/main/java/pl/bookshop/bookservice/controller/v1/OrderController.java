@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.bookshop.auth.util.annotation.AdminAuthority;
 import pl.bookshop.auth.util.annotation.EmployeeAuthority;
 import pl.bookshop.bookservice.dto.request.AssignEmployeeToOrderReq;
-import pl.bookshop.bookservice.dto.BookOrderDto;
+import pl.bookshop.bookservice.dto.response.BookOrderDto;
 import pl.bookshop.bookservice.service.OrderService;
 
 import java.util.List;

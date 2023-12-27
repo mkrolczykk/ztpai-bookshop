@@ -3,7 +3,7 @@ package pl.bookshop.bookservice.repository.facade;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import pl.bookshop.bookservice.dto.OrderLineDto;
+import pl.bookshop.bookservice.dto.response.OrderLineDto;
 import pl.bookshop.bookservice.entity.ShoppingCartEntity;
 import pl.bookshop.bookservice.entity.composedKey.ShoppingCartId;
 

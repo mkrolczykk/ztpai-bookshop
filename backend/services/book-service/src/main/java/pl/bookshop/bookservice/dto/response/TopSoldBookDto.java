@@ -1,8 +1,8 @@
-package pl.bookshop.bookservice.dto;
+package pl.bookshop.bookservice.dto.response;
 
 import java.math.BigDecimal;
 
-public interface TopSoldBooksDto {
+public interface TopSoldBookDto {
 
     Long getBookId();
 

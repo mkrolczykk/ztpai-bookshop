@@ -5,7 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.bookshop.bookservice.dto.request.AssignEmployeeToOrderReq;
-import pl.bookshop.bookservice.dto.BookOrderDto;
+import pl.bookshop.bookservice.dto.response.BookOrderDto;
 import pl.bookshop.bookservice.repository.facade.OrderRepository;
 
 import java.util.List;

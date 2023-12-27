@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bookshop.auth.util.annotation.EmployeeAuthority;
 import pl.bookshop.auth.util.annotation.UserAuthority;
-import pl.bookshop.bookservice.dto.TopSoldBooksDto;
+import pl.bookshop.bookservice.dto.response.BookDetailDto;
+import pl.bookshop.bookservice.dto.response.BookDto;
+import pl.bookshop.bookservice.dto.response.TopSoldBookDto;
 import pl.bookshop.bookservice.dto.request.AddBookReq;
 import pl.bookshop.bookservice.service.BookService;
 
@@ -31,8 +33,26 @@ class BookController {
     }
 
     @UserAuthority
+    @GetMapping("/{category}")
+    public ResponseEntity<List<BookDto>> getBooksFromGivenCategory(
+            @PathVariable String category,
+            @RequestHeader(value = "currency", defaultValue = "USD") String currency) {
+
+        return ResponseEntity.ok(bookService.getBooksFromGivenCategory(category, currency));
+    }
+
+    @UserAuthority
+    @GetMapping("/book/{bookId}")
+    public ResponseEntity<BookDetailDto> getBookById(
+            @PathVariable Long bookId,
+            @RequestHeader(value = "currency", defaultValue = "USD") String currency) {
+
+        return ResponseEntity.ok(bookService.getBookById(bookId, currency));
+    }
+
+    @UserAuthority
     @GetMapping("/bestsellers")
-    public ResponseEntity<List<TopSoldBooksDto>> getTopSoldBooks(
+    public ResponseEntity<List<TopSoldBookDto>> getTopSoldBooks(
             @RequestHeader(value = "currency", defaultValue = "USD") String currency,
             @RequestHeader(value = "limit", defaultValue = "10") Integer limit) {
 

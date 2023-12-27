@@ -131,7 +131,7 @@ public class ErrorHandlingControllerAdvice {
     ResponseEntity<ValidationErrorList> onRuntimeException(RuntimeException e) {
         ValidationErrorList errorList =
                 ValidationErrorList.of("message", MessagesEnum.INTERNAL_SERVER_ERROR);
-        e.printStackTrace();
+
         return errorList.createResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
