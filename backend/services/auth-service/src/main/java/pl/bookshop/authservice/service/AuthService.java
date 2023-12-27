@@ -9,7 +9,9 @@ import pl.bookshop.auth.util.entity.UserInfo;
 import pl.bookshop.auth.util.exception.dto.ValidationErrorList;
 import pl.bookshop.auth.util.messages.MessagesEnum;
 import pl.bookshop.auth.util.service.repository.UserInfoRepository;
+import pl.bookshop.auth.util.dto.EmployeesListDto;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 @Service
@@ -61,6 +63,10 @@ public class AuthService {
 
     public boolean existsByEmail(String email) {
         return repository.existsByEmail(email);
+    }
+
+    public List<EmployeesListDto> getEmployees() {
+        return repository.getEmployees();
     }
 
     public boolean existsByUsername(String userName) {

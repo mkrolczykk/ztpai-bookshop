@@ -12,10 +12,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.bookshop.auth.util.annotation.AdminAuthority;
+import pl.bookshop.auth.util.dto.EmployeesListDto;
 import pl.bookshop.authservice.dto.request.AuthRequest;
 import pl.bookshop.authservice.dto.request.EmailValidationRequest;
 import pl.bookshop.authservice.dto.request.RegisterRequest;
@@ -29,6 +31,8 @@ import pl.bookshop.auth.util.mapper.DTO;
 import pl.bookshop.auth.util.messages.MessagesEnum;
 import pl.bookshop.auth.util.messages.Translator;
 import pl.bookshop.auth.util.service.JwtService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -96,4 +100,11 @@ public class AuthController {
         }
         return ResponseEntity.ok().build();
     }
+
+    @AdminAuthority
+    @GetMapping("/employees")
+    public ResponseEntity<List<EmployeesListDto>> getEmployees() {
+        return ResponseEntity.ok(authService.getEmployees());
+    }
+
 }
