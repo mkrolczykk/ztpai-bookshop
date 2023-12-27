@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.bookshop.bookservice.dto.TopSoldBooksDto;
 import pl.bookshop.bookservice.dto.request.AddBookReq;
 import pl.bookshop.bookservice.entity.*;
 import pl.bookshop.bookservice.entity.composedKey.BookAuthorId;
@@ -11,6 +12,8 @@ import pl.bookshop.bookservice.entity.composedKey.BookPriceId;
 import pl.bookshop.bookservice.exception.AlreadyExistsException;
 import pl.bookshop.bookservice.exception.NotFoundException;
 import pl.bookshop.bookservice.repository.facade.*;
+
+import java.util.List;
 
 @Log4j2
 @Service
@@ -101,6 +104,10 @@ public class BookService {
                         .build())
                 .price(bookDto.getPrice())
                 .build());
+    }
+
+    public List<TopSoldBooksDto> getTopSoldBooks(String currency, int limit) {
+        return bookRepository.getTopSoldBooks(currency, limit);
     }
 
     private String generateQuizSlug(String title) {
