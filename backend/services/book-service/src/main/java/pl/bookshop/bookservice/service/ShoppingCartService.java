@@ -9,6 +9,7 @@ import pl.bookshop.bookservice.entity.*;
 import pl.bookshop.bookservice.entity.composedKey.ShoppingCartId;
 import pl.bookshop.bookservice.exception.AlreadyExistsException;
 import pl.bookshop.bookservice.exception.NotFoundException;
+import pl.bookshop.bookservice.exception.OperationProcessingException;
 import pl.bookshop.bookservice.exception.OrderSubmitFailException;
 import pl.bookshop.bookservice.repository.facade.*;
 import pl.bookshop.bookservice.utils.ShoppingCartActionConstants;
@@ -147,6 +148,12 @@ public class ShoppingCartService {
 
     public List<UserShoppingCartDto> getUserShoppingCart(final Long requestorId, String currency) {
         return shoppingCartRepository.getUserShoppingCart(requestorId, currency);
+    }
+
+    public ShoppingCartFinalPriceDto getShoppingCartFinalPrice(final Long requestorId, String currency) {
+        return shoppingCartRepository
+                .getShoppingCartFinalPrice(requestorId, currency)
+                .orElseThrow(() -> new OperationProcessingException("Shopping cart final price count operation fail"));
     }
 
     public ShoppingCartTotalItemsCountResp countShoppingCartItems(final Long requestorId) {

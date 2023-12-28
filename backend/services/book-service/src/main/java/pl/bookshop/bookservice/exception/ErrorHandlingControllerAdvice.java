@@ -51,6 +51,19 @@ public class ErrorHandlingControllerAdvice {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(OperationProcessingException.class)
+    ResponseEntity<Object> onOperationProcessingException(OperationProcessingException e, WebRequest request) {
+
+        final String message = e.getMessage();
+        log.warn("Captured OperationProcessingException: " + message);
+
+        ExceptionResponse response =
+                new ExceptionResponse(
+                        LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS), message, request.getDescription(false));
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(IllegalBookOwnerIdException.class)
     ResponseEntity<Object> onIllegalBookOwnerIdException(IllegalBookOwnerIdException e, WebRequest request) {
 
