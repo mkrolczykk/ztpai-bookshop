@@ -43,11 +43,11 @@ public interface ShoppingCartRepository {
             currency.shortcut AS currency
         FROM
             shopping_cart
-                JOIN book_price ON shopping_cart.book_id = book_price.book_id
-                JOIN currency ON book_price.currency_id = currency.currency_id
+        JOIN book_price ON shopping_cart.book_id = book_price.book_id
+        JOIN currency ON book_price.currency_id = currency.currency_id
         WHERE
-                shopping_cart.user_id = :userId AND
-                currency.shortcut = :currency
+            shopping_cart.user_id = :userId AND
+            currency.shortcut = :currency
         GROUP BY currency.shortcut
     """, nativeQuery = true)
     Optional<ShoppingCartFinalPriceDto> getShoppingCartFinalPrice(@Param("userId") long userId, @Param("currency") String currency);
