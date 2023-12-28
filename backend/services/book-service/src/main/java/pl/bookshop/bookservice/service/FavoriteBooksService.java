@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.bookshop.bookservice.dto.response.BookDto;
 import pl.bookshop.bookservice.dto.response.FavoritesBookActionResp;
 import pl.bookshop.bookservice.dto.response.FavoritesBooksCountResp;
 import pl.bookshop.bookservice.entity.SystemUserFavoriteBookEntity;
@@ -13,6 +14,8 @@ import pl.bookshop.bookservice.exception.NotFoundException;
 import pl.bookshop.bookservice.repository.facade.BookRepository;
 import pl.bookshop.bookservice.repository.facade.SystemUserFavoriteBookRepository;
 import pl.bookshop.bookservice.utils.FavoritesActionConstants;
+
+import java.util.List;
 
 @Log4j2
 @Service
@@ -55,6 +58,10 @@ public class FavoriteBooksService {
                 .action(FavoritesActionConstants.COUNT_FAVORITE_BOOKS)
                 .result(favoriteBooksRepository.countUserFavoriteBooks(requestorId))
                 .build();
+    }
+
+    public List<BookDto> getUserFavoriteBooks(final Long requestorId, final long limit) {
+        return favoriteBooksRepository.getUserFavoriteBooks(requestorId, limit);
     }
 
     @Transactional

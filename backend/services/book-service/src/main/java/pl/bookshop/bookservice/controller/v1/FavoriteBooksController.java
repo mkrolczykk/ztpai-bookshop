@@ -6,9 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bookshop.auth.util.annotation.UserAuthority;
 import pl.bookshop.auth.util.utils.AuthenticationUtils;
+import pl.bookshop.bookservice.dto.response.BookDto;
 import pl.bookshop.bookservice.dto.response.FavoritesBookActionResp;
 import pl.bookshop.bookservice.dto.response.FavoritesBooksCountResp;
 import pl.bookshop.bookservice.service.FavoriteBooksService;
+
+import java.util.List;
 
 @Log4j2
 @RestController
@@ -27,11 +30,20 @@ public class FavoriteBooksController {
     }
 
     @UserAuthority
-    @GetMapping
+    @GetMapping("/count")
     public ResponseEntity<FavoritesBooksCountResp> getUserFavoriteBooksNumber() {
 
         return ResponseEntity.ok(
                 favoriteBooksService.countUserFavoriteBooks(AuthenticationUtils.getUserId()));
+    }
+
+    @UserAuthority
+    @GetMapping
+    public ResponseEntity<List<BookDto>> getUserFavoriteBooks(
+            @RequestHeader(value = "limit", defaultValue = "2147483647") int limit) {
+
+        return ResponseEntity.ok(
+                favoriteBooksService.getUserFavoriteBooks(AuthenticationUtils.getUserId(), limit));
     }
 
     @UserAuthority
