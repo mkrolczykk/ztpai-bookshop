@@ -83,6 +83,25 @@ public interface BookRepository {
 
     @Query(value = """
         SELECT
+            book.book_id AS bookid,
+            book.title AS title,
+            STRING_AGG(author.author_name, \', \') AS authors,
+            book_price.price AS price,
+            currency.shortcut AS currency
+        FROM book
+        JOIN book_author ON book.book_id = book_author.book_id
+        JOIN author ON author.author_id = book_author.author_id
+        JOIN book_price ON book.book_id = book_price.book_id
+        JOIN currency ON book_price.currency_id = currency.currency_id
+        WHERE
+            (LOWER(book.title) LIKE :searchkey OR LOWER(author.author_name) LIKE :searchkey) AND
+            currency.shortcut = :currency
+        GROUP BY book.book_id, book.title, book_price.price, currency.shortcut
+    """, nativeQuery = true)
+    List<BookDto> getBooksByTitleOrAuthor(@Param("searchkey") String searchKey, @Param("currency") String currency);
+
+    @Query(value = """
+        SELECT
             book.book_id AS bookId,
             book.title AS title,
             STRING_AGG(author.author_name, \', \') AS authors,

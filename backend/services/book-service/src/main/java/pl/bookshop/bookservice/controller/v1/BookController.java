@@ -42,6 +42,15 @@ class BookController {
     }
 
     @UserAuthority
+    @GetMapping("/search")
+    public ResponseEntity<List<BookDto>> getBooksByTitleOrAuthor(
+            @RequestParam("searchkey") String searchKey,
+            @RequestHeader(value = "currency", defaultValue = "USD") String currency) {
+
+        return ResponseEntity.ok(bookService.getBooksByTitleOrAuthor(searchKey, currency));
+    }
+
+    @UserAuthority
     @GetMapping("/book/{bookId}")
     public ResponseEntity<BookDetailDto> getBookById(
             @PathVariable Long bookId,

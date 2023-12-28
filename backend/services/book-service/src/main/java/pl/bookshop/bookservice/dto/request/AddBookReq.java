@@ -50,7 +50,7 @@ public class AddBookReq {
 
     public BookEntity toBookEntity(String slug, long languageId, long genreId, long publisherId) {
         return BookEntity.builder()
-                .title(this.title)
+                .title(this.title.trim())
                 .summary(this.summary)
                 .description(this.description)
                 .numPages(this.numPages)

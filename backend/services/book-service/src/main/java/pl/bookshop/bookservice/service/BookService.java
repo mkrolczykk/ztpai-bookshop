@@ -118,6 +118,10 @@ public class BookService {
         return bookRepository.getBooksFromGivenCategory(category, currency);
     }
 
+    public List<BookDto> getBooksByTitleOrAuthor(String searchKey, String currency) {
+        return bookRepository.getBooksByTitleOrAuthor(searchKey.trim().toLowerCase(), currency);
+    }
+
     public List<TopSoldBookDto> getTopSoldBooks(String currency, int limit) {
         return bookRepository.getTopSoldBooks(currency, limit);
     }
