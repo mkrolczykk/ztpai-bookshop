@@ -32,7 +32,6 @@ class BookController {
         bookService.addBook(bookDto);
     }
 
-    @UserAuthority
     @GetMapping("/{category}")
     public ResponseEntity<List<BookDto>> getBooksFromGivenCategory(
             @PathVariable String category,
@@ -41,7 +40,6 @@ class BookController {
         return ResponseEntity.ok(bookService.getBooksFromGivenCategory(category, currency));
     }
 
-    @UserAuthority
     @GetMapping("/search")
     public ResponseEntity<List<BookDto>> getBooksByTitleOrAuthor(
             @RequestParam("searchkey") String searchKey,
@@ -50,7 +48,6 @@ class BookController {
         return ResponseEntity.ok(bookService.getBooksByTitleOrAuthor(searchKey, currency));
     }
 
-    @UserAuthority
     @GetMapping("/book/{bookId}")
     public ResponseEntity<BookDetailDto> getBookById(
             @PathVariable Long bookId,
@@ -59,7 +56,6 @@ class BookController {
         return ResponseEntity.ok(bookService.getBookById(bookId, currency));
     }
 
-    @UserAuthority
     @GetMapping("/bestsellers")
     public ResponseEntity<List<TopSoldBookDto>> getTopSoldBooks(
             @RequestHeader(value = "currency", defaultValue = "USD") String currency,
@@ -68,7 +64,6 @@ class BookController {
         return ResponseEntity.ok(bookService.getTopSoldBooks(currency, limit));
     }
 
-    @UserAuthority
     @GetMapping("/recents")
     public ResponseEntity<List<BookDto>> getRecentlyAddedBooks(
             @RequestHeader(value = "currency", defaultValue = "USD") String currency,
