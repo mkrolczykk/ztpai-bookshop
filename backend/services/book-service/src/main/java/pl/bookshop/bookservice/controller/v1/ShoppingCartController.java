@@ -6,9 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bookshop.auth.util.annotation.UserAuthority;
 import pl.bookshop.auth.util.utils.AuthenticationUtils;
+import pl.bookshop.bookservice.dto.response.BookDto;
 import pl.bookshop.bookservice.dto.response.ShoppingCartActionResp;
 import pl.bookshop.bookservice.dto.response.ShoppingCartTotalItemsCountResp;
+import pl.bookshop.bookservice.dto.response.UserShoppingCartDto;
 import pl.bookshop.bookservice.service.ShoppingCartService;
+
+import java.util.List;
 
 @Log4j2
 @RestController
@@ -47,6 +51,15 @@ public class ShoppingCartController {
 
     @UserAuthority
     @GetMapping
+    public ResponseEntity<List<UserShoppingCartDto>> getUserShoppingCart(
+            @RequestHeader(value = "currency", defaultValue = "USD") String currency) {
+
+        return ResponseEntity.ok(
+                shoppingCartService.getUserShoppingCart(AuthenticationUtils.getUserId(), currency));
+    }
+
+    @UserAuthority
+    @GetMapping("/count")
     public ResponseEntity<ShoppingCartTotalItemsCountResp> getShoppingCartItemsNumber() {
 
         return ResponseEntity.ok(

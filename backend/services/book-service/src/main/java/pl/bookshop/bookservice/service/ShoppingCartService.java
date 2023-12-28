@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.bookshop.bookservice.dto.response.OrderLineDto;
-import pl.bookshop.bookservice.dto.response.ShoppingCartActionResp;
-import pl.bookshop.bookservice.dto.response.ShoppingCartTotalItemsCountResp;
+import pl.bookshop.bookservice.dto.response.*;
 import pl.bookshop.bookservice.entity.*;
 import pl.bookshop.bookservice.entity.composedKey.ShoppingCartId;
 import pl.bookshop.bookservice.exception.AlreadyExistsException;
@@ -145,6 +143,10 @@ public class ShoppingCartService {
                     .build();
         } else
             throw new AlreadyExistsException(String.format("No book with bookId '%s' in shopping cart", bookId));
+    }
+
+    public List<UserShoppingCartDto> getUserShoppingCart(final Long requestorId, String currency) {
+        return shoppingCartRepository.getUserShoppingCart(requestorId, currency);
     }
 
     public ShoppingCartTotalItemsCountResp countShoppingCartItems(final Long requestorId) {
