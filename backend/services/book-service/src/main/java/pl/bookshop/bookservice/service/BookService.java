@@ -67,7 +67,7 @@ public class BookService {
         long bookId =
                 bookRepository.save(
                         bookDto.toBookEntity(
-                                generateQuizSlug(bookDto.getTitle()),
+                                generateSlug(bookDto.getTitle()),
                                 languageId,
                                 genreId,
                                 publisherId))
@@ -126,7 +126,11 @@ public class BookService {
         return bookRepository.getTopSoldBooks(currency, limit);
     }
 
-    private String generateQuizSlug(String title) {
+    public List<BookDto> getRecentlyAddedBooks(String currency, int limit) {
+        return bookRepository.getRecentlyAddedBooks(currency, limit);
+    }
+
+    private String generateSlug(String title) {
         return title.toLowerCase()
                 .replaceAll("[^a-z0-9\\s-]", "")
                 .replaceAll("\\s+", "-");

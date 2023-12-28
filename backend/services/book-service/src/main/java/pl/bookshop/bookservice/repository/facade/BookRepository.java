@@ -145,6 +145,33 @@ public interface BookRepository {
     List<TopSoldBookDto> getTopSoldBooks(@Param("currency") String currency, @Param("limit") int limit);
 
     @Query(value = """
+        SELECT
+            book.book_id AS bookid,
+            book.title AS title,
+            STRING_AGG(author.author_name, \', \') AS authors,
+            book_price.price AS price,
+            currency.shortcut AS currency
+        FROM book
+        JOIN book_author ON book.book_id = book_author.book_id
+        JOIN author ON author.author_id = book_author.author_id
+        JOIN book_price ON book.book_id = book_price.book_id
+        JOIN currency ON book_price.currency_id = currency.currency_id
+        WHERE
+            book.created_at <= NOW() AND
+            currency.shortcut = :currency
+        GROUP BY
+            book.book_id,
+            book.title,
+            book_price.price,
+            currency.shortcut,
+            book.created_at
+        ORDER BY
+            book.created_at DESC
+        LIMIT :limit
+    """, nativeQuery = true)
+    List<BookDto> getRecentlyAddedBooks(@Param("currency") String currency, @Param("limit") int limit);
+
+    @Query(value = """
         SELECT EXISTS(
             SELECT 1 FROM book b
             WHERE LOWER(b.title) = :title

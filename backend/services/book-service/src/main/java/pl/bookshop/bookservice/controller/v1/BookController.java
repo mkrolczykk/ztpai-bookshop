@@ -68,4 +68,13 @@ class BookController {
         return ResponseEntity.ok(bookService.getTopSoldBooks(currency, limit));
     }
 
+    @UserAuthority
+    @GetMapping("/recents")
+    public ResponseEntity<List<BookDto>> getRecentlyAddedBooks(
+            @RequestHeader(value = "currency", defaultValue = "USD") String currency,
+            @RequestHeader(value = "limit", defaultValue = "20") Integer limit) {
+
+        return ResponseEntity.ok(bookService.getRecentlyAddedBooks(currency, limit));
+    }
+
 }
