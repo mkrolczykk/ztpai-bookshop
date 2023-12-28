@@ -32,9 +32,7 @@ public class OrderController {
 
     @EmployeeAuthority
     @GetMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<List<BookOrderDto>> getOrders() {
-
         return ResponseEntity.ok(orderService.getOrders());
     }
 
