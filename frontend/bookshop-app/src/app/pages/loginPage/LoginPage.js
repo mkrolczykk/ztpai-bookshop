@@ -30,11 +30,14 @@ const LoginPage = () => {
             .post(API_ENDPOINTS.authenticate, loginPayload)
             .then((resp) => {
 
-                // get token from response
                 const token = resp.headers['authorization'];
 
-                // set JWT token to local storage
-                localStorage.setItem('token', token);
+                // add JWT token and user basic info to local storage
+                localStorage.setItem('auth_token', token);
+                localStorage.setItem('user_role', resp.headers['user-role']);
+                localStorage.setItem('user_name', resp.data["name"]);
+                localStorage.setItem('user_surname', resp.data["surname"]);
+                localStorage.setItem('user_username', resp.data["username"]);
 
                 // set token to axios common header
                 setAuthToken(token);

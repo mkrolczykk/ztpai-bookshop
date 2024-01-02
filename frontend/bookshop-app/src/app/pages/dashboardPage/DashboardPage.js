@@ -14,7 +14,7 @@ const DashboardPage = () => {
     useEffect(() => {
         // Check if user is authenticated and has a valid role
         const isAuthenticated = localStorage.getItem('authenticated');
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('auth_token');
         const roleId = sessionStorage.getItem('roleId');
 
         if (isAuthenticated && token && (roleId === 'user' || roleId === 'employee' || roleId === 'admin')) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const RouteGuard = ({ children }) => {
-    const hasJWT = () => localStorage.getItem('token') !== null;
+    const hasJWT = () => localStorage.getItem('auth_token') !== null;
 
     if (hasJWT()) {
         return <>{children}</>;

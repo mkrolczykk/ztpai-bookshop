@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +34,7 @@ import pl.bookshop.auth.util.messages.Translator;
 import pl.bookshop.auth.util.service.JwtService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -73,6 +75,10 @@ public class AuthController {
                     .build();
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, jwtService.generateToken(authRequest.getEmail()))
+                    .header("user-role", details.getAuthorities().stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .collect(Collectors.joining(",")))
+                    .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "content-type, cache-control, authorization, user-role, expires, pragma")
                     .body(response);
         } catch (AuthenticationException e) {
             ValidationErrorList body =
