@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { setAuthToken } from '../../helpers/setAuthToken';
 import {useLocation, useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
-import API_ENDPOINTS from "../../common/config-test";
+import {setAuthToken} from '../../security/setAuthToken';
 
 import Topbar from '../../components/topbar/Topbar';
 import Navbar from '../../components/navbar/Navbar';
 import Menu from '../../components/menu/Menu';
 import Footer from '../../components/footer/Footer';
+
+import API_ENDPOINTS from "../../common/config-test";
 
 import './login.css';
 

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import Role from "../../common/constants/Role";
+
+// components
 import Topbar from "../../components/topbar/Topbar";
 import Navbar from "../../components/navbar/Navbar";
 import Menu from "../../components/menu/Menu";
@@ -7,8 +10,8 @@ import WelcomeMessage from '../../components/welcomeMessage/WelcomeMessage';
 import BooksContainer from '../../components/booksContainer/BooksContainer';
 import OrdersContainer from '../../components/ordersContainer/OrdersContainer';
 import Footer from "../../components/footer/Footer"
-import Role from "../../common/constants/Role";
 
+// styles
 import "./user-dashboard.css";
 import "./employee-dashboard.css";
 import "./admin-dashboard.css";
@@ -56,7 +59,7 @@ const DashboardPage = () => {
                         <h1 className="page-section-title employee-dashboard-content-orders-history-title">
                             Orders to be fulfilled
                         </h1>
-                        <OrdersContainer orders={[]} employees={[]}/>
+                        {/*<OrdersContainer orders={[]} employees={[]}/>*/}
                     </section>
                 )}
 
@@ -65,7 +68,7 @@ const DashboardPage = () => {
                         <h1 className="page-section-title admin-dashboard-content-orders-history-title">
                             Orders to be fulfilled
                         </h1>
-                        <OrdersContainer orders={[]} employees={[]}/>
+                        {/*<OrdersContainer orders={[]} employees={[]}/>*/}
                     </section>
                 )}
             </div>
