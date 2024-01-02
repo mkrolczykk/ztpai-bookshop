@@ -107,7 +107,7 @@ const RegisterPage = () => {
                                 onChange={(e) => setConfirmedPassword(e.target.value)}
                             />
                         </fieldset>
-                        <fieldset>
+                        <fieldset class="notifications-fieldset">
                             <input
                                 name="notifications"
                                 type="checkbox"

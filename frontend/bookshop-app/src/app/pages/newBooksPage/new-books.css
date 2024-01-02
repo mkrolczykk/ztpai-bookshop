@@ -1,0 +1,64 @@
+.new-books-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F2F2F2;
+    padding: 2.5% 5%;
+}
+
+.new-books-content-title {
+    color: #3D464D;
+    align-self: start;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+    .new-books-content {
+        padding: unset;
+    }
+
+    .new-books-content-title {
+        color: #3D464D;
+        align-self: start;
+    }
+
+    .page-section-title {
+        margin: 25px 0 50px 25px;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+
+    .page-section-title {
+        margin: 25px 0 50px 0;
+    }
+
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {
+
+    .page-section-title {
+        margin: 25px 0 50px 0;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+
+    .page-section-title {
+        margin: 0 0 50px 0;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {
+
+}

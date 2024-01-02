@@ -1,18 +1,11 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-import DashboardPage from "../pages/dashboardPage/DashboardPage";
-
-const RouteGuard = () => {
+const RouteGuard = ({ children }) => {
     const hasJWT = () => localStorage.getItem('token') !== null;
 
     if (hasJWT()) {
-        return (
-            <>
-                <Navigate to="/dashboard" replace={true} />
-                <DashboardPage />
-            </>
-        );
+        return <>{children}</>;
     } else {
         return <Navigate to="/login" replace={true} />;
     }
