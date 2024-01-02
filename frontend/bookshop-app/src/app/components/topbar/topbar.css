@@ -1,0 +1,165 @@
+.topbar {
+    background-color: #F2F2F2;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.topbar-header {
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.top-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.top-nav li {
+    margin-right: 15px;
+}
+
+.top-nav a {
+    color: #3D464D;
+    text-decoration: none;
+}
+
+.account-nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropbtn {
+    background-color: black;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 10px 16px;
+    background-color: #C72E56;
+    font-family: inherit;
+    margin: 0;
+}
+
+.disabled a {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#dropdown-currency, #dropdown-language, #myaccount {
+    background-color: #FFFFFF;
+    color: #212529;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dropdown a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+    .top-nav ul {
+        display: none;
+    }
+    .dropdown .dropbtn {
+        padding: 5px 8px;
+    }
+
+    .dropdown-content {
+        min-width: 100px;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+
+    .dropbtn {
+        font-size: 12px;
+    }
+
+    .dropdown-content {
+        min-width: 160px;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {
+    .dropbtn {
+        font-size: 14px;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {
+
+}

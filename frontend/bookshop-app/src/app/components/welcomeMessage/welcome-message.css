@@ -1,0 +1,78 @@
+.welcome-section {
+    display: none;
+    background-color: #693FDF;
+    color: #F5F5F5;
+    width: 60%;
+    text-align: center;
+    padding: 10px;
+}
+
+.welcome-message {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-message-text {
+    color: #F5F5F5;
+    flex-grow: 1;
+}
+
+.welcome-message-button {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #F5F5F5;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+
+    .welcome-section {
+        font-size: 14px;
+    }
+
+    .welcome-message {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .welcome-message-text {
+        color: #F5F5F5;
+        flex-grow: 1;
+    }
+
+    .welcome-message-button {
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: #F5F5F5;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+
+    .user-dashboard-content-message {
+        min-height: 100px;
+        max-width: 1200px;
+        justify-content: center;
+    }
+
+    .welcome-section {
+        font-size: 16px;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {
+    .welcome-section {
+        font-size: 1.3rem;
+    }
+}

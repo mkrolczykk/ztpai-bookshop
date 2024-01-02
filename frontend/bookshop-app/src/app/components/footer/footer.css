@@ -1,0 +1,219 @@
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    background-color: #3D464D;
+    color: white;
+}
+
+.footer-contact {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer-domain {
+    display: flex;
+    flex-direction: row;
+    min-height: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 90%;
+    align-self: center;
+    border: 1px solid rgba(256, 256, 256, .1);
+    border-bottom: none;
+}
+
+.footer-domain-domain {
+    text-align: center;
+    flex-grow: 3;
+}
+
+.footer-domain-payments {
+    flex-grow: 1;
+}
+
+.footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 40%;
+    min-height: 300px;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 10px;
+}
+
+.footer-contact-text {
+    margin: 5px 0px;
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.footer-media {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.footer-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.footer-media-text {}
+
+.footer-media-button {
+    box-shadow: inset 0 0 0 2px #C72E56;
+    background-color: #C72E56;
+    color: #ffffff;
+    margin: 15px 0px;
+}
+
+.footer-media-button:hover {
+    background-color: red;
+}
+
+.footer-media-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-media-link {
+    width: 30px;
+    height: 30px;
+}
+
+.footer-menu-nav-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-menu-nav-option {
+    margin: 5px 0px;
+}
+
+.footer-menu-icon {
+    margin-right: 15px;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-left: 10%;
+    }
+
+    .footer-contact-info {
+        max-width: 80%;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .footer-menu {
+        justify-content: center;
+        min-height: unset;
+    }
+
+    .footer-media {
+        justify-content: center;
+    }
+
+    .footer-domain-payments-image {}
+
+    .footer-domain-payments {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-domain-domain {
+        display: none;
+    }
+
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+    .footer-contact {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-left: 10%;
+    }
+
+    .footer-contact-info {
+        justify-content: center;
+        margin-top: 5%;
+    }
+
+    .footer-menu {
+        justify-content: center;
+        min-height: unset;
+    }
+
+    .footer-media {
+        justify-content: center;
+    }
+
+    .footer-domain {
+        padding: 0px 15px;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {
+    .footer-contact {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: unset;
+    }
+
+    .footer-contact-info {
+        justify-content: flex-start;
+        margin-top: unset;
+    }
+
+    .footer-menu {
+        justify-content: flex-start;
+        min-height: 300px;
+    }
+
+    .footer-media {
+        justify-content: flex-start;
+    }
+
+    .footer-domain {
+        padding: unset;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {
+
+}

@@ -1,38 +1,200 @@
-.App {
+/* CSS reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+  margin:0;
+  padding:0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,body {
+  margin:0;
+  padding:0;
+}
+
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+
+fieldset,img {
+  border:0;
+}
+
+a, a:visited, a:hover, a:active, a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+input{
+  border:1px solid #b0b0b0;
+  padding:3px 5px 4px;
+  color:#979797;
+}
+
+address,caption,cite,code,dfn,th,var {
+  font-style:inherit;
+  font-weight:inherit;
+}
+
+ol,ul {
+  list-style:none;
+}
+
+caption,th {
+  text-align:left;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-size:100%;
+  font-weight:inherit;
+}
+
+q:before,q:after {
+  content:'';
+}
+
+abbr,acronym {
+  border:0;
+}
+
+.button {
+  border: none;
+  text-transform: uppercase;
+  min-width: 150px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.unique-value-style {
+  color: #693FDF;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.page-section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 50px 0;
+}
+
+#scroll-btn {
+  opacity: 0;
+  width: 50px;
+  height: 50px;
+  color: #F5F5F5;
+  background-color: #693FDF;
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  border: 2px solid #693FDF;
+  border-radius: 50%;
+  font: bold 30px Arial;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#scroll-btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.1s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#scroll-btn.show {
+  opacity: 1;
+  transition: opacity 1s, transform 1s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.amount-button {
+  min-width: 75px;
+  padding: 10px 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: #693FDF;
+  color: #F5F5F5;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
-.App-link {
-  color: #61dafb;
+.amount-button i {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-self: center;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.amount-button span {
+  height: 100%;
+}
+
+.amount-button span.amount {
+  font-size: 16px;
+  pointer-events: none;
+  font-weight: 600;
+  height: 100%;
+  align-self: center;
+  color: #F5F5F5;
+}
+
+.favorite-button {
+  min-width: 75px;
+  padding: 10px 0;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+  body {
+    font-size: 12px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .page-section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: start;
+    margin-left: 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+  body {
+    font-size: 12px;
+  }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+  body {
+    font-size: 14px;
+  }
+
+  .unique-value-style {
+    font-size: 1.3rem;
+  }
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {
+  body {
+    font-size: 14px;
   }
 }

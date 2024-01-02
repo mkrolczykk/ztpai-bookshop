@@ -1,0 +1,117 @@
+.encouragement-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    background-color: #FFEEE6;
+}
+
+.encouragement-text {
+    text-align: center;
+    color: #2B0F42;
+    margin-right: 20px;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.encouragement-text h2 {
+    font-size: 1.3rem;
+    display: flex;
+    justify-self: flex-start;
+}
+
+.encouragement-text p {
+}
+
+.encouragement-button {
+    box-shadow: inset 0 0 0 2px #693FDF;
+    color: #693FDF;
+}
+
+.encouragement-button:hover {
+    background-color: #693FDF;
+    color: white;
+}
+
+.encouragement-button a {
+    text-decoration: none;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+    .encouragement-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+    }
+
+    .encouragement-button {
+        margin-top: 20px;
+    }
+
+    .encouragement-text {
+        margin-right: unset;
+        align-items: center;
+        display: flex;
+        gap: 20px;
+    }
+
+    .encouragement-text h2 {
+        max-width: 50%;
+        display: flex;
+        justify-self: center;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+    .encouragement-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .encouragement-button {
+        margin-top: 20px;
+    }
+
+    .encouragement-text h2 {
+        font-size: 1.3rem;
+        display: flex;
+        justify-self: flex-start;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {
+    .encouragement-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .encouragement-button {
+        margin-top: unset;
+    }
+
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {
+
+}

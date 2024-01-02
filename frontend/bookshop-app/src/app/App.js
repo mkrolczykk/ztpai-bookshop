@@ -6,29 +6,28 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import StartPage from "./startPage/StartPage";
-// styles
-import './App.css';
+// import history from './helpers/history';
+import RouteGuard from "./components/RouteGuard"
 
-const styles = {
-  app: {
-    boxSizing: "border-box",
-    fontSize: "17px",
-    margin: 0,
-    padding: 0,
-  },
-};
+import StartPage from "./pages/startPage/StartPage";
+import LoginPage from "./pages/loginPage/LoginPage";
+import RegisterPage from "./pages/registerPage/RegisterPage";
+
+import './App.css';
 
 function App() {
   return (
-      <div style={styles.app}>
+      <div>
         <Router>
           <Routes>
-            {/*<Route path="/dashboard" exact>*/}
-            {/*  <Dashboard />*/}
-            {/*</Route>*/}
             <Route path="/" element={<StartPage />}/>
-            <Route element={<Navigate to="/" />}/>
+            {/*<Route element={<Navigate to="/" />}/>*/}
+            <Route path="/login" element={<LoginPage />}/>
+            <Route path="/register" element={<RegisterPage />}/>
+            <Route path="/dashboard" element={<RouteGuard />} />
+            {/*<Route element={<Navigate to="/login" />}/>*/}
+            {/*<Route path="/dashboard" element={<DashboardPage />}/>*/}
+            {/*<Route element={<Navigate to="/dashboard"/>}/>*/}
           </Routes>
         </Router>
       </div>

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-// import 'public/css/start-page.css';
+import Topbar from "../../components/topbar/Topbar"
+import Navbar from "../../components/navbar/Navbar"
+import Menu from "../../components/menu/Menu"
+import EncouragementBar from "../../components/encouragementBar/EncouragementBar"
+import Footer from "../../components/footer/Footer"
+
 import './start-page.css';
 
 const StartPage = () => {
@@ -15,7 +20,7 @@ const StartPage = () => {
         // TODO -> Update state accordingly
     }, []);
 
-    // Dummy data for features
+    // Features
     const features = [
         { icon: 'fa-solid fa-check-double', title: 'High-quality Books' },
         { icon: 'fas fa-shipping-fast', title: 'Free Delivery' },
@@ -25,6 +30,9 @@ const StartPage = () => {
 
     return (
         <div>
+            <Topbar/>
+            <Navbar/>
+            <Menu/>
             <div className="start-page-content">
                 <section className="start-page-content-start">
                     {/* TODO */}
@@ -44,9 +52,9 @@ const StartPage = () => {
                 {/* TODO -> Include other sections and components */}
             </div>
 
-            {/* TODO -> Include React equivalents for encouragement bar */}
+            <EncouragementBar/>
             {/* TODO -> Include React equivalents for recently added books */}
-            {/* TODO -> Include React equivalents for footer */}
+            <Footer/>
             {/* TODO -> Include React equivalents for JavaScript files */}
         </div>
     );

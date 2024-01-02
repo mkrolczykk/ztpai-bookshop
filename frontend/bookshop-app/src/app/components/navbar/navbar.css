@@ -1,0 +1,169 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    max-height: 200px;
+    margin: 0 10px;
+}
+
+.navbar-logo a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.navbar-search {
+    display: flex;
+}
+
+.searchkey {}
+
+.searchkey-disabled {
+    cursor: not-allowed;
+}
+
+.navbar-search-disabled {
+    background-color: #FFFFFF;
+    color: #212529;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.navbar-search-form {
+    flex-grow: 1;
+}
+
+.navbar-search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+.navbar-search-box input[type="text"] {
+    border: none;
+    padding: 5px;
+    flex-grow: 4;
+    color: #3D464D;
+}
+
+.navbar-search-box button {
+    border: none;
+    background-color: #ffffff;
+    border-left: 1px solid #ccc;
+    color: #693FDF;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.customer-service .phone-number {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 20px;
+}
+
+.customer-service .phone-number p {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #3D464D;
+}
+
+.customer-service .phone-number h5 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.navbar-search-icon:hover {
+    transform: scale(1.15);
+    transition: all 0.1s ease;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+    .navbar {
+        justify-content: center;
+    }
+
+    .navbar-logo {
+        display: none;
+        align-items: center;
+    }
+
+    .customer-service {
+        display: none;
+        align-items: center;
+    }
+
+    .navbar-search {
+        flex-grow: 1;
+        margin: 5px 0;
+        min-width: 50px;
+        max-width: 300px;
+    }
+
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+    .navbar {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        display: none;
+        align-items: center;
+    }
+
+    .customer-service {
+        display: none;
+        align-items: center;
+    }
+
+    .navbar-search {
+        margin: 5px 0;
+        flex-grow: 1;
+        min-width: 100px;
+        max-width: 400px;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) { }
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+    .navbar {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .customer-service {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-search {
+        flex-grow: 1;
+        min-width: 200px;
+        max-width: 400px;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {}

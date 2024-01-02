@@ -1,0 +1,325 @@
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3D464D;
+}
+
+.menu-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 600;
+}
+
+.menu-categories {
+    position: relative;
+    display: inline-block;
+    max-width: 250px;
+    width: 20%;
+}
+
+.menu-categories-disabled {
+    background-color: #FFFFFF;
+    color: #212529;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.menu-categories-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+    background-color: #693FDF;
+    color: #F5F5F5;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-categories-button-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-categories-button:hover {
+    color: #F5F5F5;
+}
+
+.menu-categories-content {
+    display: none;
+    position: absolute;
+    background-color: #F5F5F5;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.menu-categories-content a {
+    color: #3D464D;
+    font-weight: 600;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.menu-categories-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.menu-categories:hover .menu-categories-content {
+    display: block;
+}
+
+.menu-categories:hover .menu-categories-button {
+    background-color: #643dd7;
+}
+
+.menu-categories-content {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.menu-navigation-pages {
+    display: flex;
+    width: 80%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px;
+}
+
+.menu-navigation-other {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-navigation-other-favourite-books {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-navigation-other-shopping-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-navigation-other-favourite-books-icon {
+    color: #C72E56;
+}
+
+.menu-navigation-other-favourite-books-value {
+    padding-bottom: 2px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.menu-navigation-other-shopping-card-icon {
+    color: #C72E56;
+}
+
+.menu-navigation-other-shopping-card-value {
+    padding-bottom: 2px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+    .menu-mobile {
+        width: 100%;
+    }
+
+    .menu-categories {
+        display: none;
+    }
+
+    .menu-navigation {
+        display: none;
+    }
+
+    .menu-row {
+        width: 100%;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (min-width: 577px) {
+    .menu-row {
+        width: 100%;
+    }
+
+    .menu-mobile {
+        width: 100%;
+    }
+
+    .menu-categories {
+        display: none;
+    }
+
+    .menu-navigation {
+        display: none;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+    .menu-mobile {
+        display: none;
+    }
+
+    .menu-categories {
+        position: relative;
+        display: inline-block;
+        width: 20%;
+    }
+
+    .menu-navigation {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #F5F5F5;
+    }
+
+    .menu-row {
+        width: 90%;
+    }
+
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {
+
+}
+
+.menu-mobile-header {
+    background-color: #643dd7;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    width: 100%;
+    z-index: 2;
+}
+
+.menu-mobile-header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+    color: #3D464D;
+}
+
+.menu-mobile-header li a {
+    display: block;
+    padding: 20px 20px;
+    border-right: 1px solid #f4f4f4;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.menu-mobile-header li a:hover {
+    background-color: #f4f4f4;
+}
+
+.menu-mobile-header .menu-mobile-header-logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #F5F5F5;
+}
+
+.menu-mobile-header .menu-mobile-header-menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+}
+
+.menu-mobile-header .menu-mobile-header-menu .Favorites {
+    color: #C72E56;
+}
+
+.menu-mobile-header .menu-mobile-header-menu .Shopping {
+    color: #643dd7;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-icon {
+    cursor: pointer;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-icon .navicon {
+    background: #F5F5F5;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-icon .navicon:before,
+.menu-mobile-header .menu-mobile-header-menu-icon .navicon:after {
+    background: #F5F5F5;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-icon .navicon:before {
+    top: 5px;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-icon .navicon:after {
+    top: -5px;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-btn {
+    display: none;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-btn:checked ~ .menu-mobile-header-menu {
+    max-height: 500px;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-btn:checked ~ .menu-mobile-header-menu-icon .navicon {
+    background: transparent;
+}
+
+.menu-mobile-header .menu-mobile-header-menu-btn:checked ~ .menu-mobile-header-menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.menu-mobile-header .menu-mobile-header-menu-btn:checked ~ .menu-mobile-header-menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.menu-mobile-header .menu-mobile-header-menu-btn:checked ~ .menu-mobile-header-menu-icon:not(.steps) .navicon:before,
+.menu-mobile-header .menu-mobile-header-menu-btn:checked ~ .menu-mobile-header-menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
