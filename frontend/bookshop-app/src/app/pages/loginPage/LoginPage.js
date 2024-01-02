@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { setAuthToken } from '../../helpers/setAuthToken';
+import { useNavigate } from 'react-router-dom';
 
-import Topbar from "../../components/topbar/Topbar";
-import Navbar from "../../components/navbar/Navbar";
-import Menu from "../../components/menu/Menu";
-import Footer from "../../components/footer/Footer"
+import API_ENDPOINTS from "../../common/config-test";
+
+import Topbar from '../../components/topbar/Topbar';
+import Navbar from '../../components/navbar/Navbar';
+import Menu from '../../components/menu/Menu';
+import Footer from '../../components/footer/Footer';
 
 import './login.css';
 
@@ -11,22 +16,43 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [messages, setMessages] = useState([]);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Add your login logic here, for example, sending a request to a server.
+        const loginPayload = {
+            email,
+            password,
+        };
 
-        // For demo purposes, just setting some example messages.
-        setMessages(['Login successful']);
+        axios
+            .post(API_ENDPOINTS.authenticate, loginPayload)
+            .then((resp) => {
+
+                // get token from response
+                const token = resp.headers['authorization'];
+
+                // set JWT token to local storage
+                localStorage.setItem('token', token);
+
+                // set token to axios common header
+                setAuthToken(token);
+
+                // redirect user to dashboard
+                navigate('/dashboard');
+            })
+            .catch((err) => {
+                // handle login error
+                setMessages(['Login failed. Please check your credentials.']);
+            });
     };
 
     return (
         <div>
-            <Topbar/>
-            <Navbar/>
-            <Menu/>
-
+            <Topbar />
+            <Navbar />
+            <Menu />
             <section className="login-content">
                 <h2 className="page-section-title login-content-title">Login to the site</h2>
                 <div className="login-section-form-container">
@@ -73,8 +99,6 @@ const LoginPage = () => {
                     </form>
                 </div>
             </section>
-
-            {/* Include your footer component here */}
             <Footer />
         </div>
     );

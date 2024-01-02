@@ -45,6 +45,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
+        response.setHeader("Access-Control-Expose-Headers", "content-type, cache-control, authorization, expires, pragma");
         filterChain.doFilter(request, response);
     }
 }
