@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+import API_ENDPOINTS from "../../common/config-test";
 
 import Topbar from "../../components/topbar/Topbar";
 import Navbar from "../../components/navbar/Navbar";
 import Menu from "../../components/menu/Menu";
-import Footer from "../../components/footer/Footer"
+import Footer from "../../components/footer/Footer";
 
 import './register.css';
 
@@ -16,21 +20,43 @@ const RegisterPage = () => {
     const [confirmedPassword, setConfirmedPassword] = useState('');
     const [notifications, setNotifications] = useState(true);
     const [messages, setMessages] = useState([]);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Add your registration logic here, for example, sending a request to a server.
+        if (password !== confirmedPassword) {
+            setMessages(['Password and confirmed password do not match.']);
+            return;
+        }
 
-        // For demo purposes, just setting some example messages.
-        setMessages(['Registration successful']);
+        const registerPayload = {
+            name,
+            surname,
+            username,
+            email,
+            password,
+            notifications,
+        };
+
+        try {
+            const resp = await axios.post(API_ENDPOINTS.register, registerPayload);
+            if (resp.status === 200) {
+                setMessages(['Registration success! You can log in now :)']);
+                navigate("/login", { state: { successMessage: 'Registration success! You can log in now :)' } });
+            } else {
+                setMessages(['Registration failed. Please try again in a while.']);
+            }
+        } catch (error) {
+            setMessages(['Registration failed. Please check provided details.']);
+        }
     };
 
     return (
         <div>
-            <Topbar/>
-            <Navbar/>
-            <Menu/>
+            <Topbar />
+            <Navbar />
+            <Menu />
 
             <section className="register-content">
                 <h2 className="page-section-title register-content-title">Create an Account</h2>
@@ -134,8 +160,6 @@ const RegisterPage = () => {
                     </form>
                 </div>
             </section>
-
-            {/* Include your footer component here */}
             <Footer />
         </div>
     );

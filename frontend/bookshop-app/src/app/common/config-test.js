@@ -9,6 +9,7 @@ const createEndpoint = (port, endpoint) => `http://localhost:${port}/${endpoint}
 
 const API_ENDPOINTS = {
     authenticate: createEndpoint(AUTH_SERVICE_PORT, 'auth/authenticate'),
+    register: createEndpoint(AUTH_SERVICE_PORT, 'auth/register'),
     // TODO -> add all other endpoints
 };
 

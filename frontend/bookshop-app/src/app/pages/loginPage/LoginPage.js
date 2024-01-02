@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { setAuthToken } from '../../helpers/setAuthToken';
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 import API_ENDPOINTS from "../../common/config-test";
 
@@ -16,6 +16,8 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [messages, setMessages] = useState([]);
+    const location = useLocation();
+    const messagesFromRegister = location.state && location.state.successMessage;
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -64,6 +66,7 @@ const LoginPage = () => {
                             {messages.map((message, index) => (
                                 <div key={index}>{message}</div>
                             ))}
+                            {messagesFromRegister && <div>{messagesFromRegister}</div>}
                         </div>
                         <fieldset>
                             <input
