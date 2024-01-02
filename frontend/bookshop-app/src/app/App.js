@@ -26,7 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<StartPage />}/>
             <Route path="/search" element={<SearchPageWrapper />}/>
-            <Route path="/newBooks" element={<NewBooksPage />}/>
+            <Route path="/latest" element={<NewBooksPage />}/>
             <Route path="/bestsellers" element={<BestsellersPage />}/>
             <Route path="/contact" element={<ContactPage />}/>
             <Route path="/login" element={<LoginPage />}/>

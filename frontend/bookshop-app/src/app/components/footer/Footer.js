@@ -8,7 +8,7 @@ const Footer = () => {
 
     const menuResult = [
         ["/", "Start page"],
-        ["/newBooks", "New books"],
+        ["/latest", "New books"],
         ["/bestsellers", "Bestsellers"],
         ["/contact", "Contact"],
         ["/login", "Log in"],

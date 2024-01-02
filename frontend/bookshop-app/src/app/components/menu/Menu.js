@@ -16,7 +16,7 @@ const Menu = () => {
 
     const menuResult = [
         { label: 'Start page', link: '/' },
-        { label: 'New books', link: '/newBooks' },
+        { label: 'New books', link: '/latest' },
         { label: 'Bestsellers', link: '/bestsellers' },
         { label: 'Contact', link: '/contact' },
     ];
