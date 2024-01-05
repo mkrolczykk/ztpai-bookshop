@@ -36,7 +36,9 @@ const BestsellersPage = () => {
                     </div>
                 )}
             </section>
-            {!isAuthenticated && <EncouragementBar />}
+            {!localStorage.getItem('auth_token') && (
+                <EncouragementBar/>
+            )}
             <Footer />
         </div>
     );

@@ -73,7 +73,9 @@ const ContactPage = () => {
                     </div>
                 </div>
             </section>
-            <EncouragementBar />
+            {!localStorage.getItem('auth_token') && (
+                <EncouragementBar/>
+            )}
             <Footer />
         </div>
     );

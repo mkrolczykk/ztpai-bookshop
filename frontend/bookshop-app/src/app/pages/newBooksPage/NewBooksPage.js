@@ -36,7 +36,7 @@ const NewBooksPage = () => {
                     </div>
                 )}
             </section>
-            {!isAuthenticated && (
+            {!localStorage.getItem('auth_token') && (
                 <EncouragementBar/>
             )}
             <Footer/>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 import Role from '../../common/constants/Role';
 import API_ENDPOINTS from '../../common/config-test';
@@ -16,6 +16,8 @@ import './start-page.css';
 
 import pcPhoto1 from './start-page-image1.png';
 import pcPhoto2 from './start-page-image2.png';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 
 const StartPage = () => {
     const [totalBooks, setTotalBooks] = useState(0);
@@ -123,7 +125,9 @@ const StartPage = () => {
                     )}
                 </section>
             </div>
-            <EncouragementBar />
+            {!localStorage.getItem('auth_token') && (
+                <EncouragementBar/>
+            )}
             <section className="start-page-content-recently-added">
                 <h1 className="page-section-title start-page-content-recently-added-title">Recently added</h1>
                 {recentlyAddedBooks.length > 0 ? (
