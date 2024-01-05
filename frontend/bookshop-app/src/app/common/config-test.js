@@ -1,8 +1,7 @@
 // config-test.js
 
-const AUTH_SERVICE_PORT = 8190;     // [LOCAL env] Auth service endpoint (Default: DISABLED)
-const BOOK_SERVICE_PORT = 8290;     // [LOCAL env] Bookshop service direct endpoint (Default: DISABLED)
-const GATEWAY_SERVICE_PORT = 8081;  // [LOCAL env] API Gateway Bookshop service endpoint
+const AUTH_SERVICE_PORT = 8190;     // [LOCAL env] Auth service port (Default: DISABLED)
+const BOOK_SERVICE_PORT = 8290;     // [LOCAL env] Bookshop service port (Default: DISABLED)
 
 // endpoint template func
 const createEndpoint = (port, endpoint) => `http://localhost:${port}/${endpoint}`;
