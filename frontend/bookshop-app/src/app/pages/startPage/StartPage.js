@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Role from '../../common/constants/Role';
 import API_ENDPOINTS from '../../common/config-test';
+
 import Topbar from '../../components/topbar/Topbar';
 import Navbar from '../../components/navbar/Navbar';
 import Menu from '../../components/menu/Menu';
@@ -9,9 +11,9 @@ import CategoriesContainer from '../../components/categoriesContainer/Categories
 import BooksContainer from '../../components/booksContainer/BooksContainer';
 import EncouragementBar from '../../components/encouragementBar/EncouragementBar';
 import Footer from '../../components/footer/Footer';
-import Role from '../../common/constants/Role';
 
 import './start-page.css';
+
 import pcPhoto1 from './start-page-image1.png';
 import pcPhoto2 from './start-page-image2.png';
 
@@ -60,9 +62,6 @@ const StartPage = () => {
             .then((response) => response.json())
             .then((data) => setTopSoldBooks(data))
             .catch((error) => console.error('Error fetching top sold books:', error));
-
-        // TODO: Fetch additional data using REST API
-        // TODO: Update state accordingly
     }, []);
 
     const features = [
@@ -119,7 +118,7 @@ const StartPage = () => {
                         <BooksContainer booksResult={topSoldBooks} />
                     ) : (
                         <div className="start-page-content-message">
-                            Brak danych na temat top sprzedanych książek
+                            No data available about bestsellers
                         </div>
                     )}
                 </section>
@@ -131,7 +130,7 @@ const StartPage = () => {
                     <BooksContainer booksResult={recentlyAddedBooks} />
                 ) : (
                     <div className="start-page-content-message">
-                        Brak ostatnio dodanych książek
+                        No recently added books data found
                     </div>
                 )}
             </section>
