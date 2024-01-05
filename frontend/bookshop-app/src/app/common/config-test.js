@@ -13,6 +13,8 @@ const API_ENDPOINTS = {
     genres: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/genres'),
     topSoldBooks: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/books/bestsellers'),
     recentlyAdded: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/books/recents'),
+    favoriteBooksCount: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/favorites/count'),
+    shoppingCartItemCount: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/cart/count'),
     // TODO -> add all other endpoints
 };
 

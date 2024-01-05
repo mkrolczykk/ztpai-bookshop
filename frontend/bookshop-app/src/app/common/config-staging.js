@@ -12,6 +12,8 @@ const API_ENDPOINTS = {
     genres: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/genres'),
     topSoldBooks: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/books/bestsellers'),
     recentlyAdded: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/books/recents'),
+    favoriteBooksCount: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/favorites/count'),
+    shoppingCartItemCount: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/cart/count'),
     // TODO -> add all other endpoints
 };
 
