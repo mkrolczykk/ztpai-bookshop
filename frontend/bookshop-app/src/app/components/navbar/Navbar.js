@@ -5,16 +5,15 @@ import Role from '../../common/constants/Role';
 
 import "./navbar.css"
 
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const Navbar = () => {
-    const redirectUrl = sessionStorage.getItem('authenticated')
+    const redirectUrl = localStorage.getItem('auth_token')
         ? (() => {
-            switch (sessionStorage.getItem('roleId')) {
-                case Role.ROLE_USER:
-                    return '/userDashboard';
-                case Role.ROLE_EMPLOYEE:
-                    return '/employeeDashboard';
-                case Role.ROLE_ADMIN:
-                    return '/adminDashboard';
+            switch (localStorage.getItem('user_role')) {
+                case Role.ROLE_USER || Role.ROLE_EMPLOYEE || Role.ROLE_ADMIN:
+                    return '/dashboard';
                 default:
                     return '/';
             }
@@ -22,10 +21,10 @@ const Navbar = () => {
         : '/';
 
     const roleText = (() => {
-        if (!sessionStorage.getItem('authenticated')) {
+        if (!localStorage.getItem('auth_token')) {
             return 'Book Shop';
         } else {
-            switch (sessionStorage.getItem('roleId')) {
+            switch (localStorage.getItem('user_role')) {
                 case Role.ROLE_USER:
                     return 'Book Shop';
                 case Role.ROLE_EMPLOYEE:
@@ -38,8 +37,7 @@ const Navbar = () => {
         }
     })();
 
-    const isUserAuthenticated = sessionStorage.getItem('authenticated');
-    const isUserRoleUser = isUserAuthenticated && sessionStorage.getItem('roleId') === Role.ROLE_USER;
+    const isUserStaff = localStorage.getItem('user_role') === Role.ROLE_EMPLOYEE || localStorage.getItem('user_role') === Role.ROLE_ADMIN;
 
     return (
         <div className="navbar">
@@ -48,19 +46,17 @@ const Navbar = () => {
                     <span>{roleText}</span>
                 </Link>
             </div>
-            {(!isUserAuthenticated || isUserRoleUser) && (
-                <div className={`navbar-search ${isUserRoleUser ? '' : 'navbar-search-disabled blocked'}`}>
-                    <form className="navbar-search-form" action="search" method="POST">
-                        <div className="navbar-search-box">
-                            <input name="searchkey" type="text" placeholder="Search for title, author" disabled={!isUserRoleUser} />
-                            <input type="hidden" name="currency" value="USD" />
-                            <button type="submit" disabled={!isUserRoleUser}>
-                                <i className="fa fa-search navbar-search-icon"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            )}
+            <div className={`navbar-search ${isUserStaff ? 'navbar-search-disabled blocked' : ''}`}>
+                <form className="navbar-search-form" action="search" method="POST">
+                    <div className="navbar-search-box">
+                        <input name="searchkey" type="text" placeholder="Search for title, author" disabled={isUserStaff} />
+                        <input type="hidden" name="currency" value="USD" />
+                        <button type="submit" disabled={isUserStaff}>
+                            <FontAwesomeIcon icon={faSearch} className="navbar-search-icon" />
+                        </button>
+                    </div>
+                </form>
+            </div>
             <div className="customer-service">
                 <div className="phone-number">
                     <p>Customer Support</p>

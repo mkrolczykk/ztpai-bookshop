@@ -8,15 +8,16 @@ import EncouragementBar from '../../components/encouragementBar/EncouragementBar
 import Footer from '../../components/footer/Footer';
 
 import './bestsellers.css';
+import API_ENDPOINTS from "../../common/config-test";
 
 const BestsellersPage = () => {
     const [topSoldBooks, setTopSoldBooks] = useState([]);
-    const [messages, setMessages] = useState([]);
-    const isAuthenticated = sessionStorage.getItem('authenticated');
-
     useEffect(() => {
-        // TODO -> umiescic logikę pobierania topSoldBooks oraz messages z API lub innego źródła danych
-        // TODO -> Ustaw dane przy użyciu setTopSoldBooks i setMessages
+        // Fetch topSoldBooks from the API
+        fetch(API_ENDPOINTS.topSoldBooks)
+            .then((response) => response.json())
+            .then((data) => setTopSoldBooks(data))
+            .catch((error) => console.error('Error fetching top sold books:', error));
     }, []);
 
     return (
@@ -30,9 +31,7 @@ const BestsellersPage = () => {
                     <BooksContainer booksResult={topSoldBooks} />
                 ) : (
                     <div className="start-page-content-message">
-                        {messages.map((message, index) => (
-                            <div key={index}>{message}</div>
-                        ))}
+                        No data available about bestsellers
                     </div>
                 )}
             </section>

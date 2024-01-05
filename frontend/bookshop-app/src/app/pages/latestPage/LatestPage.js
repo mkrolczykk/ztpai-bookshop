@@ -8,16 +8,18 @@ import EncouragementBar from "../../components/encouragementBar/EncouragementBar
 import Footer from "../../components/footer/Footer"
 
 import './new-books.css';
+import API_ENDPOINTS from "../../common/config-test";
 
-const NewBooksPage = () => {
+const LatestPage = () => {
     const [recentlyAddedBooks, setRecentlyAddedBooks] = useState([]);
-    const [messages, setMessages] = useState([]);
-    const isAuthenticated = sessionStorage.getItem('authenticated');
 
     useEffect(() => {
-        // TODO -> umiescic logikę pobierania recentlyAddedBooks oraz messages z API lub innego źródła danych
-        // TODO -> ustawic dane przy użyciu setRecentlyAddedBooks i setMessages
-    }, []); //
+        // Fetch recently added books from the API
+        fetch(API_ENDPOINTS.recentlyAdded)
+            .then((response) => response.json())
+            .then((data) => setRecentlyAddedBooks(data))
+            .catch((error) => console.error('Error fetching recently added books:', error));
+    }, []);
 
     return (
         <div>
@@ -30,9 +32,7 @@ const NewBooksPage = () => {
                     <BooksContainer booksResult={recentlyAddedBooks} />
                 ) : (
                     <div className="new-books-content-message">
-                        {messages.map((message, index) => (
-                            <div key={index}>{message}</div>
-                        ))}
+                        No recently added books data found
                     </div>
                 )}
             </section>
@@ -44,4 +44,4 @@ const NewBooksPage = () => {
     );
 };
 
-export default NewBooksPage;
+export default LatestPage;

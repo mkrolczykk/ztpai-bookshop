@@ -14,7 +14,7 @@ import AdminRoutesGuard from "./security/AdminRoutesGuard"
 // components
 import StartPage from "./pages/startPage/StartPage";
 import SearchPageWrapper from "./pages/searchPage/SearchPage"
-import NewBooksPage from "./pages/newBooksPage/NewBooksPage"
+import LatestPage from "./pages/latestPage/LatestPage"
 import BestsellersPage from "./pages/bestsellersPage/BestsellersPage"
 import ContactPage from "./pages/contactPage/ContactPage";
 import LoginPage from "./pages/loginPage/LoginPage";
@@ -31,7 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<StartPage />}/>
             <Route path="/search" element={<SearchPageWrapper />}/>
-            <Route path="/latest" element={<NewBooksPage />}/>
+            <Route path="/latest" element={<LatestPage />}/>
             <Route path="/bestsellers" element={<BestsellersPage />}/>
             <Route path="/contact" element={<ContactPage />}/>
             <Route path="/login" element={<LoginPage />}/>
