@@ -1,26 +1,70 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Topbar from "../../components/topbar/Topbar"
-import Navbar from "../../components/navbar/Navbar"
-import Menu from "../../components/menu/Menu"
-import EncouragementBar from "../../components/encouragementBar/EncouragementBar"
-import Footer from "../../components/footer/Footer"
+import API_ENDPOINTS from '../../common/config-test';
+import Topbar from '../../components/topbar/Topbar';
+import Navbar from '../../components/navbar/Navbar';
+import Menu from '../../components/menu/Menu';
+import CategoriesContainer from '../../components/categoriesContainer/CategoriesContainer';
+import BooksContainer from '../../components/booksContainer/BooksContainer';
+import EncouragementBar from '../../components/encouragementBar/EncouragementBar';
+import Footer from '../../components/footer/Footer';
+import Role from '../../common/constants/Role';
 
 import './start-page.css';
+import pcPhoto1 from './start-page-image1.png';
+import pcPhoto2 from './start-page-image2.png';
 
 const StartPage = () => {
-    // TODO -> State to handle total books, top sold books, recently added books, etc.
     const [totalBooks, setTotalBooks] = useState(0);
     const [topSoldBooks, setTopSoldBooks] = useState([]);
     const [recentlyAddedBooks, setRecentlyAddedBooks] = useState([]);
+    const [bookCategories, setBookCategories] = useState([]);
+    const navigate = useNavigate();
 
-    // useEffect for fetching data from the server using REST API
+    const determineExploreLink = () => {
+        console.log(localStorage.getItem('auth_token'))
+        if (localStorage.getItem('auth_token')) {
+            switch (localStorage.getItem('user_role')) {
+                case Role.ROLE_USER || Role.ROLE_EMPLOYEE || Role.ROLE_ADMIN:
+                    return '/dashboard';
+                default:
+                    return '/login';
+            }
+        } else {
+            return '/login';
+        }
+    };
+
     useEffect(() => {
-        // TODO -> Fetch totalBooks, topSoldBooks, recentlyAddedBooks, etc. using REST API
-        // TODO -> Update state accordingly
+        // Fetch book genres from the API
+        fetch(API_ENDPOINTS.genres)
+            .then((response) => response.json())
+            .then((data) => setBookCategories(data))
+            .catch((error) => console.error('Error fetching book genres:', error));
+
+        // Fetch recently added books from the API
+        fetch(API_ENDPOINTS.recentlyAdded)
+            .then((response) => response.json())
+            .then((data) => setRecentlyAddedBooks(data))
+            .catch((error) => console.error('Error fetching recently added books:', error));
+
+        // Fetch totalBooks from the API
+        fetch(API_ENDPOINTS.totalBooks)
+            .then((response) => response.json())
+            .then((data) => setTotalBooks(data.result))
+            .catch((error) => console.error('Error fetching total books:', error));
+
+        // Fetch topSoldBooks from the API
+        fetch(API_ENDPOINTS.topSoldBooks)
+            .then((response) => response.json())
+            .then((data) => setTopSoldBooks(data))
+            .catch((error) => console.error('Error fetching top sold books:', error));
+
+        // TODO: Fetch additional data using REST API
+        // TODO: Update state accordingly
     }, []);
 
-    // Features
     const features = [
         { icon: 'fa-solid fa-check-double', title: 'High-quality Books' },
         { icon: 'fas fa-shipping-fast', title: 'Free Delivery' },
@@ -30,12 +74,31 @@ const StartPage = () => {
 
     return (
         <div>
-            <Topbar/>
-            <Navbar/>
-            <Menu/>
+            <Topbar />
+            <Navbar />
+            <Menu />
             <div className="start-page-content">
                 <section className="start-page-content-start">
-                    {/* TODO */}
+                    <div className="start-page-content-start-left">
+                        <div className="start-page-content-left-image">
+                            <img src={pcPhoto1} alt="" />
+                        </div>
+                        <div className="start-page-content-left-descr">
+                            <h1>The world of books</h1>
+                            <p>Discover the vast world of books and embark on a literary adventure with our diverse collection.</p>
+                            <div className="start-page-content-start-right-button button" onClick={() => navigate(determineExploreLink())}>
+                                Buy now
+                            </div>
+                        </div>
+                    </div>
+                    <div className="start-page-content-start-right">
+                        <div className="start-page-content-start-right-title">
+                            <h1>We already have over <span className="unique-value-style">{totalBooks}</span> unique books in our warehouses!</h1>
+                        </div>
+                        <div className="start-page-content-start-right-image">
+                            <img src={pcPhoto2} alt="" />
+                        </div>
+                    </div>
                 </section>
                 <section className="start-page-content-features">
                     {features.map((feature, index) => (
@@ -49,13 +112,30 @@ const StartPage = () => {
                         </div>
                     ))}
                 </section>
-                {/* TODO -> Include other sections and components */}
+                <CategoriesContainer bookCategories={bookCategories} />
+                <section className="start-page-content-top-books">
+                    <h1 className="page-section-title start-page-content-top-books-title">Top 10 bestsellers</h1>
+                    {topSoldBooks.length > 0 ? (
+                        <BooksContainer booksResult={topSoldBooks} />
+                    ) : (
+                        <div className="start-page-content-message">
+                            Brak danych na temat top sprzedanych książek
+                        </div>
+                    )}
+                </section>
             </div>
-
-            <EncouragementBar/>
-            {/* TODO -> Include React equivalents for recently added books */}
-            <Footer/>
-            {/* TODO -> Include React equivalents for JavaScript files */}
+            <EncouragementBar />
+            <section className="start-page-content-recently-added">
+                <h1 className="page-section-title start-page-content-recently-added-title">Recently added</h1>
+                {recentlyAddedBooks.length > 0 ? (
+                    <BooksContainer booksResult={recentlyAddedBooks} />
+                ) : (
+                    <div className="start-page-content-message">
+                        Brak ostatnio dodanych książek
+                    </div>
+                )}
+            </section>
+            <Footer />
         </div>
     );
 };

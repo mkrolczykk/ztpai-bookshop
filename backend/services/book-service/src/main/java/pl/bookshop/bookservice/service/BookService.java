@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.bookshop.bookservice.dto.response.BookDetailDto;
-import pl.bookshop.bookservice.dto.response.BookDto;
-import pl.bookshop.bookservice.dto.response.TopSoldBookDto;
+import pl.bookshop.bookservice.dto.response.*;
 import pl.bookshop.bookservice.dto.request.AddBookReq;
 import pl.bookshop.bookservice.entity.*;
 import pl.bookshop.bookservice.entity.composedKey.BookAuthorId;
@@ -106,6 +104,13 @@ public class BookService {
                         .build())
                 .price(bookDto.getPrice())
                 .build());
+    }
+
+    public BooksAvailableResp countAvailableBooks() {
+        return BooksAvailableResp.builder()
+                .action("books:count")
+                .result(bookRepository.countAvailableBooks())
+                .build();
     }
 
     public BookDetailDto getBookById(Long bookId, String currency) {

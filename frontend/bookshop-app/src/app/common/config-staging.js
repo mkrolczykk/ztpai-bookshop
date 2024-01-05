@@ -8,6 +8,10 @@ const createEndpoint = (port, endpoint) => `http://localhost:${port}/${endpoint}
 const API_ENDPOINTS = {
     authenticate: createEndpoint(GATEWAY_SERVICE_PORT, 'auth/authenticate'),
     register: createEndpoint(GATEWAY_SERVICE_PORT, 'auth/register'),
+    totalBooks: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/books/count'),
+    genres: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/genres'),
+    topSoldBooks: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/books/bestsellers'),
+    recentlyAdded: createEndpoint(GATEWAY_SERVICE_PORT, 'bookapp/api/v1/books/recents'),
     // TODO -> add all other endpoints
 };
 

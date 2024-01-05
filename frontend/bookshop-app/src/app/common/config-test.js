@@ -9,6 +9,10 @@ const createEndpoint = (port, endpoint) => `http://localhost:${port}/${endpoint}
 const API_ENDPOINTS = {
     authenticate: createEndpoint(AUTH_SERVICE_PORT, 'auth/authenticate'),
     register: createEndpoint(AUTH_SERVICE_PORT, 'auth/register'),
+    totalBooks: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/books/count'),
+    genres: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/genres'),
+    topSoldBooks: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/books/bestsellers'),
+    recentlyAdded: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/books/recents'),
     // TODO -> add all other endpoints
 };
 

@@ -1,0 +1,98 @@
+.categories-container {
+
+}
+
+.categories-container-books-categories h1 {
+
+    color: #693FDF;
+}
+
+.categories-container-books-categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-container-books-categories-container-category {
+    flex-basis: 20%;
+    margin-bottom: 30px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    min-width: 200px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20%;
+    background-color: #F8F8F8;
+    color: #3D464D;
+    font-weight: 600;
+}
+
+.categories-container-books-categories-container-category:hover {
+    background-color: #F5F5F5;
+    cursor: pointer;
+    color: #693FDF;
+}
+
+.categories-container-books-categories-container-category.empty {
+    visibility: hidden;
+}
+
+.categories-container-books-categories-container-category h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 25%;
+    color: #3D464D;
+}
+
+.categories-container-books-categories-container-category img {
+    display: block;
+    width: 25%;
+}
+
+.categories-container-books-categories-container-category:hover img {
+    transform: scale(1.25);
+    opacity: 0.8;
+    transition: all 0.2s ease;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width : 576px) {
+    .categories-container-books-categories-container-category {
+        flex-basis: 40%;
+        margin-right: 5%;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (min-width: 768px) {
+    .categories-container-books-categories-container-category {
+        flex-basis: 18%;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 992px) {
+    .categories-container-books-categories-container-category {
+        flex-basis: 16%;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width: 1200px) {
+    .categories-container-books-categories-container-category {
+        flex-basis: 14%;
+    }
+}
+
+/* hi-res laptops and desktops */
+@media (min-width: 1400px) {
+
+    .categories-container-books-categories-container-category {
+        flex-basis: 12%;
+    }
+}

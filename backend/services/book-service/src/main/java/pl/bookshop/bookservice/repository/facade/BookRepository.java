@@ -55,6 +55,11 @@ public interface BookRepository {
     Optional<BookDetailDto> getBookById(@Param("bookId") long bookId, @Param("currency") String currency);
 
     @Query(value = """
+        SELECT COUNT(*) as count FROM book
+    """, nativeQuery = true)
+    int countAvailableBooks();
+
+    @Query(value = """
         SELECT
             book.book_id AS bookid,
             book.title AS title,

@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bookshop.auth.util.annotation.EmployeeAuthority;
-import pl.bookshop.auth.util.annotation.UserAuthority;
 import pl.bookshop.bookservice.dto.response.BookDetailDto;
 import pl.bookshop.bookservice.dto.response.BookDto;
+import pl.bookshop.bookservice.dto.response.BooksAvailableResp;
 import pl.bookshop.bookservice.dto.response.TopSoldBookDto;
 import pl.bookshop.bookservice.dto.request.AddBookReq;
 import pl.bookshop.bookservice.service.BookService;
@@ -30,6 +30,12 @@ class BookController {
     public void addBook(@RequestBody @Valid AddBookReq bookDto) {
 
         bookService.addBook(bookDto);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<BooksAvailableResp> countAvailableBooks() {
+
+        return ResponseEntity.ok(bookService.countAvailableBooks());
     }
 
     @GetMapping("/{category}")
