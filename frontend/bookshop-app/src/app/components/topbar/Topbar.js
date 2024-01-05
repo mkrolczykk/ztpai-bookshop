@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import LogoutHelper from '../../security/logoutHelper';
+
 import './topbar.css';
 
 const Topbar = () => {
     const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
     const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
     const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
+
+    const { handleLogout } = LogoutHelper();
 
     const handleDropdownToggle = (dropdown) => {
         switch (dropdown) {
@@ -47,10 +51,10 @@ const Topbar = () => {
                     <div className="dropdown" onClick={() => handleDropdownToggle('account')}>
                         <button className="dropbtn">My Account <i className="fa fa-caret-down fa-lg"></i></button>
                         <div className={`dropdown-content ${accountDropdownOpen ? 'show' : ''}`}>
-                            {sessionStorage.getItem('authenticated') ? (
+                            {localStorage.getItem('auth_token') ? (
                                 <>
                                     <Link to="/myaccount">My Account</Link>
-                                    <Link to="/logout">Logout</Link>
+                                    <Link to="/login" onClick={handleLogout}>Logout</Link>
                                 </>
                             ) : (
                                 <>
@@ -60,7 +64,23 @@ const Topbar = () => {
                             )}
                         </div>
                     </div>
-                    {/* Similar structure for currency and language dropdowns */}
+                    <div className="dropdown" onClick={() => handleDropdownToggle('currency')}>
+                        <button id="dropdown-currency" className="dropbtn" disabled>USD
+                            <i className="fa fa-caret-down fa-lg"></i>
+                        </button>
+                        <div className="dropdown-content" id="currency">
+                            <a>PLN</a>
+                            <a>EUR</a>
+                        </div>
+                    </div>
+                    <div className="dropdown" onClick={() => handleDropdownToggle('language')}>
+                        <button id="dropdown-language" className="dropbtn" disabled>EN
+                            <i className="fa fa-caret-down fa-lg"></i>
+                        </button>
+                        <div className="dropdown-content" id="language">
+                            <a>PL</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
