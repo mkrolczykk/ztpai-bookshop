@@ -13,6 +13,7 @@
     <modules>
         <module>auth-service</module>
         <module>book-service</module>
+        <module>gpt-service</module>
         <module>gateway-service</module>
         <module>modules/auth-util</module>
     </modules>
@@ -26,6 +27,7 @@
         <project.lombok.version>1.18.24</project.lombok.version>
         <jwt.version>0.11.5</jwt.version>
         <open.api.version>2.0.4</open.api.version>
+        <spring.cloud.starter.openfeign.version>4.0.2</spring.cloud.starter.openfeign.version>
         <slf4j.version>2.0.5</slf4j.version>
         <log4j.api.version>2.20.0</log4j.api.version>
         <log4j.core.version>2.20.0</log4j.core.version>
@@ -67,6 +69,11 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${open.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${spring.cloud.starter.openfeign.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>

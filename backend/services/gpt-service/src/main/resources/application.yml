@@ -1,0 +1,53 @@
+server:
+  port: 8490
+  servlet:
+    context-path: /gptclient
+
+openai-service:
+  api-key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  gpt-model: gpt-3.5-turbo
+  audio-model: whisper-1
+  http-client:
+    read-timeout: 180000
+    connect-timeout: 180000
+  urls:
+    base-url-v1: https://api.openai.com/v1
+    chat-url-v1: /chat/completions
+    create-transcription-url-v1: /audio/transcriptions
+
+logging:
+  level:
+    pl.bookshop.gptservice: TRACE
+
+spring:
+  security:
+    secret: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+    permit:
+      all: /actuator, /actuator/**, /api/v1/chat, /api/v1/transcription, /api/v1/notifications/generate/welcomeMessage, /v3/api-docs/**, /swagger-ui/**, /swagger-ui.html
+  datasource:
+    url: jdbc:postgresql://localhost:5500/bookshop_db
+    username: postgres
+    password: postgres
+    driver-class-name: 'org.postgresql.Driver'
+  jackson:
+    default-property-inclusion: NON_NULL
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 120000 # 2 min
+            readTimeout: 120000 # 2 min
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: 'ALWAYS'
+  health:
+    circuitbreakers:
+      enabled: true
