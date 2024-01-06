@@ -13,11 +13,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.bookshop.auth.util.annotation.AdminAuthority;
+import pl.bookshop.auth.util.annotation.EmployeeAuthority;
 import pl.bookshop.auth.util.dto.EmployeesListDto;
 import pl.bookshop.authservice.dto.request.AuthRequest;
 import pl.bookshop.authservice.dto.request.EmailValidationRequest;
@@ -75,10 +73,11 @@ public class AuthController {
                     .build();
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, jwtService.generateToken(authRequest.getEmail()))
+                    .header("user-id", details.getId().toString())
                     .header("user-role", details.getAuthorities().stream()
                             .map(GrantedAuthority::getAuthority)
                             .collect(Collectors.joining(",")))
-                    .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "content-type, cache-control, authorization, user-role, expires, pragma")
+                    .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "content-type, cache-control, authorization, user-id, user-role, expires, pragma")
                     .body(response);
         } catch (AuthenticationException e) {
             ValidationErrorList body =
@@ -107,7 +106,7 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @AdminAuthority
+    @EmployeeAuthority
     @GetMapping("/employees")
     public ResponseEntity<List<EmployeesListDto>> getEmployees() {
         return ResponseEntity.ok(authService.getEmployees());

@@ -33,7 +33,7 @@ const SearchPage = ({ booksResult, messages }) => {
                     </div>
                 )}
             </div>
-            {!sessionStorage.getItem('authenticated') && <EncouragementBar />}
+            {!localStorage.getItem('auth_token') && <EncouragementBar />}
             <Footer />
         </div>
     );
@@ -45,12 +45,9 @@ const SearchPageWrapper = () => {
     const [booksResult, setBooksResult] = useState([]);
     const [messages, setMessages] = useState([]);
 
-    // TODO -> Pobierz dane z API, itp., używając parametrów z URL, a następnie ustaw je w stanie
+    // TODO -> Get data from API
     useEffect(() => {
-        // TODO -> Pobierz dane z API, itp., używając parametrów z URL
-        // TODO -> Następnie ustaw dane w stanie
-        // TODO -> setBooksResult(...)
-        // TODO -> setMessages(...)
+        // TODO -> Get data from API, etc., using parameters from URL
     }, [param1, param2]);
 
     return <SearchPage booksResult={booksResult} messages={messages} />;

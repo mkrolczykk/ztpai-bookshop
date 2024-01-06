@@ -37,6 +37,7 @@ const LoginPage = () => {
 
                 // add JWT token and user basic info to local storage
                 localStorage.setItem('auth_token', token);
+                localStorage.setItem('user_id', resp.headers['user-id']);
                 localStorage.setItem('user_role', resp.headers['user-role']);
                 localStorage.setItem('user_name', resp.data["name"]);
                 localStorage.setItem('user_surname', resp.data["surname"]);

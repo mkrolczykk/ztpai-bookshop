@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './menu.css';
 
 const Menu = () => {
+    const userRole = localStorage.getItem('user_role');
     const [favoriteBooksCount, setFavoriteBooksCount] = useState(0);
     const [shoppingCartItemCount, setShoppingCartItemCount] = useState(0);
     const [categories, setCategories] = useState([]);
@@ -26,15 +27,17 @@ const Menu = () => {
 
     const fetchData = async () => {
         try {
-            // Fetch favorite books count
-            const favoriteBooksResponse = await axios.get(API_ENDPOINTS.favoriteBooksCount);
-            const favoriteCount = favoriteBooksResponse.data.result;
-            setFavoriteBooksCount(favoriteCount);
+            if (userRole === Role.ROLE_USER) {
+                // Fetch favorite books count
+                const favoriteBooksResponse = await axios.get(API_ENDPOINTS.favoriteBooksCount);
+                const favoriteCount = favoriteBooksResponse.data.result;
+                setFavoriteBooksCount(favoriteCount);
 
-            // Fetch shopping cart item count
-            const shoppingCartResponse = await axios.get(API_ENDPOINTS.shoppingCartItemCount);
-            const cartItemCount = shoppingCartResponse.data.result;
-            setShoppingCartItemCount(cartItemCount);
+                // Fetch shopping cart item count
+                const shoppingCartResponse = await axios.get(API_ENDPOINTS.shoppingCartItemCount);
+                const cartItemCount = shoppingCartResponse.data.result;
+                setShoppingCartItemCount(cartItemCount);
+            }
 
             loadCategories();
         } catch (error) {
@@ -92,8 +95,6 @@ const Menu = () => {
             return menuResult;
         }
 
-        const userRole = localStorage.getItem('user_role');
-
         if (userRole === Role.ROLE_USER) {
             return [...menuResult, ...userMenuResult];
         } else if (userRole === Role.ROLE_EMPLOYEE) {
@@ -110,7 +111,7 @@ const Menu = () => {
                 <nav className="menu-categories">
                     <a className={`menu-categories-button ${localStorage.getItem('auth_token') && localStorage.getItem('user_role') !== Role.ROLE_USER ? 'disabled' : ''}`} onClick={handleCategoriesButtonClick}>
                         <h2 className="menu-categories-button-title">
-                            <FontAwesomeIcon icon={faBars} size="md" />
+                            <FontAwesomeIcon icon={faBars} size="lg" />
                             <p>Categories</p>
                         </h2>
                         <FontAwesomeIcon icon={faCaretDown} size="lg" className="menu-categories-button-icon" />
