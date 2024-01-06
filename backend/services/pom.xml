@@ -14,6 +14,7 @@
         <module>auth-service</module>
         <module>book-service</module>
         <module>gpt-service</module>
+        <module>notifications-service</module>
         <module>gateway-service</module>
         <module>modules/auth-util</module>
     </modules>
@@ -28,6 +29,7 @@
         <jwt.version>0.11.5</jwt.version>
         <open.api.version>2.0.4</open.api.version>
         <spring.cloud.starter.openfeign.version>4.0.2</spring.cloud.starter.openfeign.version>
+        <jackson.databind.version>2.14.2</jackson.databind.version>
         <slf4j.version>2.0.5</slf4j.version>
         <log4j.api.version>2.20.0</log4j.api.version>
         <log4j.core.version>2.20.0</log4j.core.version>
@@ -48,6 +50,11 @@
                     </exclusion>
                 </exclusions>
                 <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.databind.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -74,6 +81,26 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
                 <version>${spring.cloud.starter.openfeign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jdbc</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-mail</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>

@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.bookshop.auth.util.annotation.UserAuthority;
 import pl.bookshop.gptservice.dto.request.RegisteredUserInfoDto;
 import pl.bookshop.gptservice.service.V1PersonalizedNotificationsService;
 
@@ -15,7 +14,6 @@ public class V1PersonalizedNotificationsController {
 
     private final V1PersonalizedNotificationsService notificationsService;
 
-    @UserAuthority
     @PostMapping(value = "/generate/welcomeMessage", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> generateWelcomeMessage(@RequestBody RegisteredUserInfoDto dto) {
         return ResponseEntity.ok(notificationsService.generateWelcomeMessage(dto));

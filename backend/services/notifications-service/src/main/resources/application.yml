@@ -1,19 +1,7 @@
 server:
-  port: 8490
+  port: 8390
   servlet:
-    context-path: /gptclient
-
-openai-service:
-  api-key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-  gpt-model: gpt-3.5-turbo
-  audio-model: whisper-1
-  http-client:
-    read-timeout: 180000
-    connect-timeout: 180000
-  urls:
-    base-url-v1: https://api.openai.com/v1
-    chat-url-v1: /chat/completions
-    create-transcription-url-v1: /audio/transcriptions
+    context-path: /notifications
 
 logging:
   config: classpath:log4j2.xml
@@ -24,7 +12,7 @@ spring:
   security:
     secret: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
     permit:
-      all: /actuator, /actuator/**, /api/v1/chat, /api/v1/transcription, /api/v1/notifications/generate/welcomeMessage, /v3/api-docs/**, /swagger-ui/**, /swagger-ui.html
+      all: /actuator, /actuator/**, /v3/api-docs/**, /swagger-ui/**, /swagger-ui.html
   datasource:
     url: jdbc:postgresql://localhost:5500/bookshop_db
     username: postgres
@@ -39,7 +27,33 @@ spring:
           default:
             connectTimeout: 120000 # 2 min
             readTimeout: 120000 # 2 min
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: bookshopztpai@gmail.com
+    password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
+# GPT service client
+gpt-service:
+  http-client:
+    read-timeout: 120000
+    connect-timeout: 120000
+  urls:
+    base-url: http://localhost:8490/gptclient
+    generate-welcome-message: /api/v1/notifications/generate/welcomeMessage
+
+# actuator
 management:
   endpoints:
     web:

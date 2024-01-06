@@ -10,10 +10,14 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>gpt-service</artifactId>
-	<name>gpt-service</name>
+	<artifactId>notifications-service</artifactId>
+	<name>notifications-service</name>
 	<version>0.0.1-SNAPSHOT</version>
-	<description>OpenAI's GPT client service</description>
+	<description>Notifications service</description>
+
+	<properties>
+		<com.alibaba.fastjson2.version>2.0.43</com.alibaba.fastjson2.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -31,6 +35,27 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.fastjson2</groupId>
+			<artifactId>fastjson2</artifactId>
+			<version>${com.alibaba.fastjson2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -76,7 +101,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>${project.groupId}/gpt.service:${project.version}</name>
+						<name>${project.groupId}/notifications.service:${project.version}</name>
 					</image>
 				</configuration>
 				<executions>
