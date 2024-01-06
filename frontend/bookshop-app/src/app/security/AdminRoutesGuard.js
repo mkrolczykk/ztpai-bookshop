@@ -3,11 +3,11 @@ import RoutesGuard from './RoutesGuard';
 
 import Role from "../common/constants/Role";
 
-const UserRoutesGuard = ({ children }) => {
+const AdminRoutesGuard = ({ children }) => {
 
-    const roleCheck = () => localStorage.getItem('user_role') === Role.ROLE_EMPLOYEE;
+    const roleCheck = () => localStorage.getItem('user_role') === Role.ROLE_ADMIN;
 
     return <RoutesGuard roleCheck={roleCheck}>{children}</RoutesGuard>;
 };
 
-export default UserRoutesGuard
+export default AdminRoutesGuard
