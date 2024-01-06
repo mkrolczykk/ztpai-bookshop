@@ -20,6 +20,7 @@ const API_ENDPOINTS = {
     ordersList: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/orders'),
     markAsFinished: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/orders/order/{order_id}/status/pending'),
     assignToEmployee: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/orders/order/assign'),
+    search: createEndpoint(BOOK_SERVICE_PORT, 'bookapp/api/v1/books/search?searchkey={search_key}'),
     // TODO -> add all other endpoints
 };
 

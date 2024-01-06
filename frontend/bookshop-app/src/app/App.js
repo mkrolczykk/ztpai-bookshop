@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,7 +13,7 @@ import AdminRoutesGuard from "./security/AdminRoutesGuard"
 
 // components
 import StartPage from "./pages/startPage/StartPage";
-import SearchPageWrapper from "./pages/searchPage/SearchPage"
+import SearchPage from "./pages/searchPage/SearchPage"
 import LatestPage from "./pages/latestPage/LatestPage"
 import BestsellersPage from "./pages/bestsellersPage/BestsellersPage"
 import ContactPage from "./pages/contactPage/ContactPage";
@@ -24,13 +24,18 @@ import DashboardPage from "./pages/dashboardPage/DashboardPage";
 // styles
 import './App.css';
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    // set default language and currency
+    localStorage.setItem('user_language', 'EN');
+    localStorage.setItem('user_currency', 'USD');
+  });
   return (
       <div>
         <Router>
           <Routes>
             <Route path="/" element={<StartPage />}/>
-            <Route path="/search" element={<SearchPageWrapper />}/>
+            <Route path="/search" element={<SearchPage />}/>
             <Route path="/latest" element={<LatestPage />}/>
             <Route path="/bestsellers" element={<BestsellersPage />}/>
             <Route path="/contact" element={<ContactPage />}/>

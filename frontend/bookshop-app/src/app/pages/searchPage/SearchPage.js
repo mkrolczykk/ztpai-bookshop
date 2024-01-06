@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import Topbar from '../../components/topbar/Topbar';
 import Navbar from '../../components/navbar/Navbar';
@@ -9,8 +10,9 @@ import EncouragementBar from '../../components/encouragementBar/EncouragementBar
 import Footer from '../../components/footer/Footer';
 
 import './search-results.css';
+import API_ENDPOINTS from '../../common/config-test';
 
-const SearchPage = ({ booksResult, messages }) => {
+const SearchComponent = ({ booksResult }) => {
     return (
         <div>
             <Topbar />
@@ -26,10 +28,8 @@ const SearchPage = ({ booksResult, messages }) => {
                     </>
                 ) : (
                     <div className="find-results-content-message">
-                        {messages &&
-                            messages.map((message, index) => (
-                                <div key={index}>{message}</div>
-                            ))}
+                        <br/> UI for search feature in progress. Use API instead <br/> <br/>
+                        Available endpoint: '/bookapp/api/v1/books/search?searchkey=xxxxx', where xxxxx is book title or author
                     </div>
                 )}
             </div>
@@ -39,18 +39,28 @@ const SearchPage = ({ booksResult, messages }) => {
     );
 };
 
-const SearchPageWrapper = () => {
-    const { param1, param2 } = useParams();
-
+const SearchPage = () => {
+    const { searchkey } = useParams();
     const [booksResult, setBooksResult] = useState([]);
-    const [messages, setMessages] = useState([]);
 
-    // TODO -> Get data from API
     useEffect(() => {
-        // TODO -> Get data from API, etc., using parameters from URL
-    }, [param1, param2]);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(API_ENDPOINTS.search.replace('{search_key}', searchkey), {
+                    headers: {
+                        'currency': localStorage.getItem('user_currency')
+                    }
+                });
+                setBooksResult(response.data);
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+            }
+        };
 
-    return <SearchPage booksResult={booksResult} messages={messages} />;
+        fetchData();
+    }, [searchkey]);
+
+    return <SearchComponent booksResult={booksResult} />;
 };
 
-export default SearchPageWrapper;
+export default SearchPage;

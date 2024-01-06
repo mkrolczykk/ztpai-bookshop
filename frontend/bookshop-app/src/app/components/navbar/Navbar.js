@@ -47,10 +47,10 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className={`navbar-search ${isUserStaff ? 'navbar-search-disabled blocked' : ''}`}>
-                <form className="navbar-search-form" action="search" method="POST">
+                <form className="navbar-search-form" action="search" method="GET">
                     <div className="navbar-search-box">
                         <input name="searchkey" type="text" placeholder="Search for title, author" disabled={isUserStaff} />
-                        <input type="hidden" name="currency" value="USD" />
+                        <input type="hidden" name="currency" value={localStorage.getItem('user_currency')} />
                         <button type="submit" disabled={isUserStaff}>
                             <FontAwesomeIcon icon={faSearch} className="navbar-search-icon" />
                         </button>
