@@ -12,10 +12,8 @@ import pl.bookshop.auth.util.annotation.UserAuthority;
 @RestController
 @RequiredArgsConstructor
 public class TestController {
-
-    @UserAuthority
     @GetMapping("/test")
     public ResponseEntity<String> test() {
-        return ResponseEntity.ok("test");
+        return ResponseEntity.ok("test success");
     }
 }

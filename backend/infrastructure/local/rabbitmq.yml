@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION}-management-alpine
+    container_name: rabbitmq
+    ports:
+      - '${RABBITMQ_AMQP_HOST_PORT}:${RABBITMQ_AMQP_INTERNAL_PORT}'
+      - '${RABBITMQ_MANAGEMENT_PLUGIN_HOST_PORT}:${RABBITMQ_MANAGEMENT_PLUGIN_INTERNAL_PORT}'
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - "./containers-data/rabbitmq/var/lib/rabbitmq:/var/lib/rabbitmq/:z"
+      - "./containers-data/rabbitmq/var/log/rabbitmq:/var/log/rabbitmq/:z"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
