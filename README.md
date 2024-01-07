@@ -119,7 +119,7 @@ messages for users, such as generating welcome emails for newly registered users
 This messaging system is designed to facilitate seamless communication between different 
 components of application, ensuring a smooth flow of information.
 
-### How RabbitMQ is Utilized in project
+### How RabbitMQ is utilized in project
 The messaging system is employed to trigger specific actions based on events, enhancing the overall user experience. 
 Some notable use cases include:
 
