@@ -26,6 +26,14 @@ spring:
     location: classpath:banner.txt
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: auth
           uri: http://${auth-service.host}:${auth-service.port}/
