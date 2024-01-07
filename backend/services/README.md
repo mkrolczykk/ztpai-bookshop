@@ -14,8 +14,10 @@
 .
 ```
 
-The Gateway Service can be referred to as a "backend proxy server." 
-This component serves as an intermediary between clients and the backend services (4), 
-efficiently redirecting traffic to the respective backend services. In the context of microservices 
-architecture, it acts as an API gateway, managing traffic, routing requests to the appropriate services, 
-handling authentication, authorization, and other functions related to incoming client requests.
+The Gateway Service can be referred to as a "backend proxy server." This component 
+serves as an intermediary between clients and the backend services, efficiently redirecting
+traffic to the respective backend services. <br/>
+
+In the context of microservices architecture, it acts as an API gateway, managing traffic, routing 
+requests to the appropriate services, handling authentication, authorization, and other functions 
+related to incoming client requests.

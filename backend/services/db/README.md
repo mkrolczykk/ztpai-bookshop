@@ -18,3 +18,6 @@ Linux, MacOS
 ```
 $ ./liquibase.sh update postgres postgres book_shop jdbc:postgresql://bookshop_db:5432/bookshop_db org.postgresql.Driver
 ```
+
+### Database diagram
+![Database diagram](./bookshop_db-physical-diagram.png)
