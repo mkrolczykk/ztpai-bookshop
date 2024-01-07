@@ -29,4 +29,4 @@ jobs:
         run: cd backend/services
       - name: Build and Test with Maven
         run: |
-          mvn -f pom.xml clean install -DskipTests=${{ env.SKIP_TESTS }}
+          mvn clean install -DskipTests=${{ env.SKIP_TESTS }}
