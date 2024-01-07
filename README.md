@@ -89,15 +89,11 @@ With Bookshop, you can easily discover and purchase your favorite books, explore
 
 1. Go to 'backend/infrastructure/local' directory and make own copy of '.env.sample.' file. Save it as '.env' in same place.
 2. Set up values for SPRING_SECURITY_SECRET, OPENAI_API_KEY and SPRING_MAIL_PASSWORD inside .env file.
-3. Run ````mvn clean install``` command (this command will build and install docker images for all services).
+3. Run ```mvn clean install``` command (this command will build and install docker images for all services).
 4. Return to 'backend/infrastructure' folder and follow local environment start guide instructions.
-5. Go to 'frontend/bookshop-app' folder and run ````npm install``` command (this command will install all necessary packages/libs for FE app)
-6. Start frontend application in development mode:
-```
-$ npm start
-```
-7. After loading application is ready to use. <br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. Go to 'frontend/bookshop-app' folder and run ```npm install``` command (this command will install all necessary packages/libs for FE app)
+6. Start frontend application in development mode by running ```npm start``` command.
+7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Database Information
 
