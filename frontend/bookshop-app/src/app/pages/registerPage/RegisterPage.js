@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import API_ENDPOINTS from "../../common/config-test";
+import API_ENDPOINTS from "../../common/config-staging";
 
 import Topbar from "../../components/topbar/Topbar";
 import Navbar from "../../components/navbar/Navbar";
@@ -133,7 +133,7 @@ const RegisterPage = () => {
                                 onChange={(e) => setConfirmedPassword(e.target.value)}
                             />
                         </fieldset>
-                        <fieldset class="notifications-fieldset">
+                        <fieldset className="notifications-fieldset">
                             <input
                                 name="notifications"
                                 type="checkbox"

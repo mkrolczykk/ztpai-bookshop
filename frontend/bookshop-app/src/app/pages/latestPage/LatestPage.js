@@ -8,7 +8,7 @@ import EncouragementBar from "../../components/encouragementBar/EncouragementBar
 import Footer from "../../components/footer/Footer"
 
 import './new-books.css';
-import API_ENDPOINTS from "../../common/config-test";
+import API_ENDPOINTS from "../../common/config-staging";
 
 const LatestPage = () => {
     const [recentlyAddedBooks, setRecentlyAddedBooks] = useState([]);

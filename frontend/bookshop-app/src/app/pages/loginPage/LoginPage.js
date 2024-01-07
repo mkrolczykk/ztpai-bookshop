@@ -9,7 +9,7 @@ import Navbar from '../../components/navbar/Navbar';
 import Menu from '../../components/menu/Menu';
 import Footer from '../../components/footer/Footer';
 
-import API_ENDPOINTS from "../../common/config-test";
+import API_ENDPOINTS from "../../common/config-staging";
 
 import './login.css';
 

@@ -10,7 +10,7 @@ import EncouragementBar from '../../components/encouragementBar/EncouragementBar
 import Footer from '../../components/footer/Footer';
 
 import './search-results.css';
-import API_ENDPOINTS from '../../common/config-test';
+import API_ENDPOINTS from '../../common/config-staging';
 
 const SearchComponent = ({ booksResult }) => {
     return (

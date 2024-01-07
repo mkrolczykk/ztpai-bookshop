@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import './start-page.css';
 
 import Role from '../../common/constants/Role';
-import API_ENDPOINTS from '../../common/config-test';
+import API_ENDPOINTS from '../../common/config-staging';
 
 import Topbar from '../../components/topbar/Topbar';
 import Navbar from '../../components/navbar/Navbar';

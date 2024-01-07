@@ -12,9 +12,14 @@ services:
 #    entrypoint: ['check-auth-server-started.sh']
     environment:
       - "SERVER_PORT=${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "SPRING_SECURITY_SECRET=${SPRING_SECURITY_SECRET}"
       - "SPRING_DATASOURCE_URL=jdbc:postgresql://bookshop_db:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
       - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
       - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
+      - "SPRING_RABBITMQ_HOST=rabbitmq"
+      - "SPRING_RABBITMQ_PORT=${RABBITMQ_AMQP_INTERNAL_PORT}"
+      - "SPRING_RABBITMQ_USERNAME=${RABBITMQ_DEFAULT_USER}"
+      - "SPRING_RABBITMQ_PASSWORD=${RABBITMQ_DEFAULT_PASS}"
     volumes:
       - "./scripts/check-auth-server-started.sh:/usr/local/bin/check-auth-server-started.sh"
     networks:
@@ -31,11 +36,67 @@ services:
 #    entrypoint: ['check-bookservice-server-started.sh']
     environment:
       - "SERVER_PORT=${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "SPRING_SECURITY_SECRET=${SPRING_SECURITY_SECRET}"
       - "SPRING_DATASOURCE_URL=jdbc:postgresql://bookshop_db:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
       - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
       - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
     volumes:
       - "./scripts/check-bookservice-server-started.sh:/usr/local/bin/check-bookservice-server-started.sh"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+  gpt-service-1:
+    image: ${GROUP_ID}/gpt.service:${GPT_SERVICE_VERSION:-latest}
+    container_name: gpt-service-1
+#    ports:
+#      - "${GPT_SERVICE_1_SERVER_PORT}:${GPT_SERVICE_1_SERVER_INTERNAL_PORT}"
+    user: root
+    depends_on:
+      bookshop_db:
+        condition: service_healthy
+    #    entrypoint: ['check-gpt-service-started.sh']
+    environment:
+      - "SERVER_PORT=${GPT_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "SPRING_SECURITY_SECRET=${SPRING_SECURITY_SECRET}"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://bookshop_db:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
+      - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
+      - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
+      - "OPENAI-SERVICE_API-KEY=${OPENAI_API_KEY}"
+      - "OPENAI-SERVICE_HTTP-CLIENT_READ-TIMEOUT=120000"
+      - "OPENAI-SERVICE_HTTP-CLIENT_CONNECT-TIMEOUT=120000"
+    volumes:
+      - "./scripts/check-gpt-service-started.sh:/usr/local/bin/check-gpt-service-started.sh"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+  notifications-service-1:
+    image: ${GROUP_ID}/notifications.service:${NOTIFICATIONS_SERVICE_VERSION:-latest}
+    container_name: notifications-service-1
+#    ports:
+#      - "${NOTIFICATIONS_SERVICE_1_SERVER_PORT}:${NOTIFICATIONS_SERVICE_1_SERVER_INTERNAL_PORT}"
+    user: root
+    depends_on:
+      bookshop_db:
+        condition: service_healthy
+    #    entrypoint: ['check-notifications-service-started.sh']
+    environment:
+      - "SERVER_PORT=${NOTIFICATIONS_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "SPRING_SECURITY_SECRET=${SPRING_SECURITY_SECRET}"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://bookshop_db:${POSTGRES_DB_INTERNAL_PORT}/${POSTGRES_DB}"
+      - "SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}"
+      - "SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}"
+      - "GPT-SERVICE_URLS_BASE-URL=http://gpt-service-1:${GPT_SERVICE_1_SERVER_INTERNAL_PORT}/gptclient"
+      - "GPT-SERVICE_URLS_GENERATE-WELCOME-MESSAGE=/api/v1/notifications/generate/welcomeMessage"
+      - "GPT-SERVICE_HTTP-CLIENT_READ-TIMEOUT=120000"
+      - "GPT-SERVICE_HTTP-CLIENT_CONNECT-TIMEOUT=120000"
+      - "SPRING_RABBITMQ_HOST=rabbitmq"
+      - "SPRING_RABBITMQ_PORT=${RABBITMQ_AMQP_INTERNAL_PORT}"
+      - "SPRING_RABBITMQ_USERNAME=${RABBITMQ_DEFAULT_USER}"
+      - "SPRING_RABBITMQ_PASSWORD=${RABBITMQ_DEFAULT_PASS}"
+      - "SPRING_MAIL_HOST=${SPRING_MAIL_HOST}"
+      - "SPRING_MAIL_PORT=${SPRING_MAIL_PORT}"
+      - "SPRING_MAIL_USERNAME=${SPRING_MAIL_USERNAME}"
+      - "SPRING_MAIL_PASSWORD=${SPRING_MAIL_PASSWORD}"
+    volumes:
+      - "./scripts/check-notifications-service-started.sh:/usr/local/bin/check-notifications-service-started.sh"
     networks:
       - ${GLOBAL_NETWORK:-services}
   gateway-service-1:
@@ -46,6 +107,8 @@ services:
     depends_on:
       - auth-service-1
       - book-service-1
+      - gpt-service-1
+      - notifications-service-1
 #    entrypoint: ['check-gatewayservice-server-started.sh']
     volumes:
       - "./scripts/check-gatewayservice-server-started.sh:/usr/local/bin/check-gatewayservice-server-started.sh"
@@ -56,5 +119,9 @@ services:
       - "AUTH-SERVICE_PORT=${AUTH_SERVICE_1_SERVER_INTERNAL_PORT}"
       - "BOOK-SERVICE-1_HOST=book-service-1"
       - "BOOK-SERVICE-1_PORT=${BOOK_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "GPT-SERVICE-1_HOST=gpt-service-1"
+      - "GPT-SERVICE-1_PORT=${GPT_SERVICE_1_SERVER_INTERNAL_PORT}"
+      - "NOTIFICATIONS-SERVICE-1_HOST=notifications-service-1"
+      - "NOTIFICATIONS-SERVICE-1_PORT=${NOTIFICATIONS_SERVICE_1_SERVER_INTERNAL_PORT}"
     networks:
       - ${GLOBAL_NETWORK:-services}

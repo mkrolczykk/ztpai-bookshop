@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import API_ENDPOINTS from '../../common/config-test';
+import API_ENDPOINTS from '../../common/config-staging';
 import Role from "../../common/constants/Role";
 
 // components
