@@ -9,6 +9,14 @@ book-service-1:
   host: localhost
   port: 8290
 
+notifications-service-1:
+  host: localhost
+  port: 8390
+
+gpt-service-1:
+  host: localhost
+  port: 8490
+
 open-api:
   host: localhost
   port: ${server.port}
@@ -27,6 +35,14 @@ spring:
           uri: http://${book-service-1.host}:${book-service-1.port}/
           predicates:
             - Path=/bookapp/**
+        - id: notificationsapp
+          uri: http://${notifications-service-1.host}:${notifications-service-1.port}/
+          predicates:
+            - Path=/notifications/**
+        - id: gptapp
+          uri: http://${gpt-service-1.host}:${gpt-service-1.port}/
+          predicates:
+            - Path=/gptclient/**
         - id: openAPI
           uri: http://${open-api.host}:${open-api.port}/
           predicates:
@@ -48,3 +64,7 @@ springdoc:
         name: Authorization Service
       - url: /bookapp/v3/api-docs
         name: Bookshop Service
+      - url: /notifications/v3/api-docs
+        name: Notifications Service
+      - url: /gptclient/v3/api-docs
+        name: GPT Service

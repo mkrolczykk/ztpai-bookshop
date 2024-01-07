@@ -6,7 +6,7 @@ import './orders-container.css';
 
 import { faCaretDown, faCaretLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import API_ENDPOINTS from '../../common/config-test';
+import API_ENDPOINTS from '../../common/config-staging';
 import Role from "../../common/constants/Role";
 
 const OrdersContainer = ({ orders, employees }) => {

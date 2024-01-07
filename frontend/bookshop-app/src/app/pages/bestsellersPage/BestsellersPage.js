@@ -8,7 +8,7 @@ import EncouragementBar from '../../components/encouragementBar/EncouragementBar
 import Footer from '../../components/footer/Footer';
 
 import './bestsellers.css';
-import API_ENDPOINTS from "../../common/config-test";
+import API_ENDPOINTS from "../../common/config-staging";
 
 const BestsellersPage = () => {
     const [topSoldBooks, setTopSoldBooks] = useState([]);

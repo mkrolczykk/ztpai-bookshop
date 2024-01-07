@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { setAuthToken } from '../../security/setAuthToken';
-import API_ENDPOINTS from '../../common/config-test';
+import API_ENDPOINTS from '../../common/config-staging';
 import Role from "../../common/constants/Role";
 
 import { faBars, faHeart, faShoppingCart, faCaretDown } from '@fortawesome/free-solid-svg-icons';
