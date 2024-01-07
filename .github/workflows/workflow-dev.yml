@@ -18,12 +18,16 @@ jobs:
       SKIP_TESTS: 'true'
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          path: backend/services
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'temurin'
       - name: Build and Test with Maven
+        working-directory: backend/services
         run: |
           mvn clean install -DskipTests=${{ env.SKIP_TESTS }}
