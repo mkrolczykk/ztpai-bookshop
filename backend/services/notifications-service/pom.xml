@@ -15,10 +15,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Notifications service</description>
 
-	<properties>
-		<com.alibaba.fastjson2.version>2.0.43</com.alibaba.fastjson2.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>pl.bookshop</groupId>
@@ -51,7 +47,6 @@
 		<dependency>
 			<groupId>com.alibaba.fastjson2</groupId>
 			<artifactId>fastjson2</artifactId>
-			<version>${com.alibaba.fastjson2.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

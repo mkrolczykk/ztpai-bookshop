@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Data
 @ToString
-public class RegisteredUserInfoDto implements Serializable {
+public class UserRegisterSuccessEvent implements Serializable {
 
     @NotBlank(message = Messages.EMPTY_FIELD)
     private String messageLanguage;

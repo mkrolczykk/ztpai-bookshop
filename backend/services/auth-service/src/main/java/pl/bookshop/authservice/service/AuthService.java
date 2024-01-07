@@ -10,6 +10,8 @@ import pl.bookshop.auth.util.exception.dto.ValidationErrorList;
 import pl.bookshop.auth.util.messages.MessagesEnum;
 import pl.bookshop.auth.util.service.repository.UserInfoRepository;
 import pl.bookshop.auth.util.dto.EmployeesListDto;
+import pl.bookshop.authservice.clients.RabbitMQWelcomeMsgQueueProducer;
+import pl.bookshop.authservice.dto.UserRegisterSuccessEvent;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,12 +20,14 @@ import java.util.function.Predicate;
 @RequiredArgsConstructor
 public class AuthService {
 
+    private final RabbitMQWelcomeMsgQueueProducer rabbitMQProducer;
+
     private final UserInfoRepository repository;
 
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public UserInfo registerUser(UserInfo userInfo) {
+    public void registerUser(UserInfo userInfo) {
 
         validateRegisterRequest(userInfo);
 
@@ -32,7 +36,16 @@ public class AuthService {
         userInfo.setEmailAccepted(Boolean.TRUE);    // TODO -> temporary workaround
         userInfo.setNotifications(Boolean.TRUE);
 
-        return repository.save(userInfo);
+        UserInfo newUser = repository.save(userInfo);
+        // TODO -> register events should be send to rabbitMQ asynchronously
+        rabbitMQProducer
+                .sendMessage(UserRegisterSuccessEvent.builder()
+                        .messageLanguage("polish") // TODO -> temporary workaround; set language from frontend app settings
+                        .email(newUser.getEmail())
+                        .name(newUser.getName())
+                        .surname(newUser.getSurname())
+                        .username(newUser.getUsername())
+                        .build());
     }
 
     @Transactional

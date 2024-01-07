@@ -12,7 +12,8 @@ public class GPTNotificationsTemplates {
                 "6. Maintain the message format so that it displays nicely in the email\n" +
                 "7. Format: JSON\n" +
                 "8. 100%% completed, ready to parse JSON\n" +
-                "9. JSON Structure template:\n" +
+                "9. Generate the text so that it displays clearly (IMPORTANT: use email formatting and spacing)\n" +
+                "10. JSON Structure template:\n" +
                 "{\n" +
                 "    \"message\": \"xxxxxxx\"\n" +
                 "}";

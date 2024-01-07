@@ -41,8 +41,8 @@ public class GPTServiceClientConfig {
         return new Retryer.Default();
     }
 
-    @Bean
-    public RequestInterceptor apiKeyInterceptor() {
-        return request -> request.header("Authorization", "Bearer " + AuthenticationUtils.getUserId());
-    }
+//    @Bean
+//    public RequestInterceptor apiKeyInterceptor() {
+//        return request -> request.header("Authorization", "Bearer " + AuthenticationUtils.getUserId());
+//    }
 }
