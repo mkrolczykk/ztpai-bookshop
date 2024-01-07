@@ -27,7 +27,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Set working directory
+        run: cd backend/services
       - name: Build and Test with Maven
-        working-directory: backend/services
         run: |
           mvn clean install -DskipTests=${{ env.SKIP_TESTS }}
