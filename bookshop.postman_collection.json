@@ -1,0 +1,2842 @@
+{
+	"info": {
+		"_postman_id": "65f8b391-8ccc-452c-8111-d9bb34389021",
+		"name": "ztpai-bookshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26487422"
+	},
+	"item": [
+		{
+			"name": "auth-service",
+			"item": [
+				{
+					"name": "localhost",
+					"item": [
+						{
+							"name": "register",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Marcin\",\r\n    \"surname\":\"Krolczyk\",\r\n    \"username\":\"mkrolczyk\",\r\n    \"email\":\"m.krolczyk66@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authservice_localhost}}/auth/register",
+									"host": [
+										"{{authservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "register_employee",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzY5NzE5OCwiZXhwIjoxNzAzNjk4OTk4fQ.DJFANzrWbCgRE91qGiEsO3i45xUfDoPUOm56WoRC9k4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"employee1\",\r\n    \"surname\":\"John\",\r\n    \"username\":\"Lol\",\r\n    \"email\":\"employee1@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authservice_localhost}}/auth/register/employee",
+									"host": [
+										"{{authservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "authenticate",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"lukieoo@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authservice_localhost}}/auth/authenticate",
+									"host": [
+										"{{authservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "email_validate",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"lukieoo@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authservice_localhost}}/auth/register/email/validate",
+									"host": [
+										"{{authservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"email",
+										"validate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "username_validate",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTY5ODE4NjAzMiwiZXhwIjoxNjk4MTg3ODMyfQ.v2syT_AIa89xyib7ADqem8Q3agGiirnaaOjeOGYnD-0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"lukieoo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{authservice_localhost}}/auth/register/username/validate",
+									"host": [
+										"{{authservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"username",
+										"validate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "employees",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYUBnbWFpbC5jb20iLCJpYXQiOjE3MDQ0OTY4MjQsImV4cCI6MTcwNDQ5ODYyNH0.UHeurwKTMT2371V9T4SODeiGk7FZTtZO5-vXMevKO4U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{authservice_localhost}}/auth/employees",
+									"host": [
+										"{{authservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"employees"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "gateway",
+					"item": [
+						{
+							"name": "register",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDU5MzExNiwiZXhwIjoxNzA0NTk0OTE2fQ.euckbLgi4Pcu7xU0_fY8dMkwV1kXIepJStfo2QkXQ-I",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Marcin\",\r\n    \"surname\":\"Krolczyk\",\r\n    \"username\":\"mkrolczyk\",\r\n    \"email\":\"m.krolczyk66@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/auth/register",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "register_employee",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzY5NzE5OCwiZXhwIjoxNzAzNjk4OTk4fQ.DJFANzrWbCgRE91qGiEsO3i45xUfDoPUOm56WoRC9k4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"employee1\",\r\n    \"surname\":\"John\",\r\n    \"username\":\"Lol\",\r\n    \"email\":\"employee1@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/auth/register/employee",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "authenticate",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"lukieoo@gmail.com\",\r\n    \"password\":\"test1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/auth/authenticate",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "email_validate",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"lukieoo@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/auth/register/email/validate",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"email",
+										"validate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "username_validate",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTY5ODE4NjAzMiwiZXhwIjoxNjk4MTg3ODMyfQ.v2syT_AIa89xyib7ADqem8Q3agGiirnaaOjeOGYnD-0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"lukieoo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/auth/register/username/validate",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"username",
+										"validate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "employees",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/auth/employees",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"auth",
+										"employees"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "book-service",
+			"item": [
+				{
+					"name": "localhost",
+					"item": [
+						{
+							"name": "v1",
+							"item": [
+								{
+									"name": "cart",
+									"item": [
+										{
+											"name": "add_to_shopping_cart",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NDU5NiwiZXhwIjoxNzAzNzc2Mzk2fQ.CbtLLlWp7Z23X7sCXJF-YmNZRvyfugQNnCfWvBkU_eA",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "amount",
+														"value": "10",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart/1",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"1"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "submit_order",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzMjM5MywiZXhwIjoxNzAyOTM0MTkzfQ.MQevq9Av8t6GCP4MM9EPzW5wm1aBbV1h3yoTMkkaLAM",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart/submit",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"submit"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "increase_amount_of_given_book",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NDU5NiwiZXhwIjoxNzAzNzc2Mzk2fQ.CbtLLlWp7Z23X7sCXJF-YmNZRvyfugQNnCfWvBkU_eA",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart/increase/1",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"increase",
+														"1"
+													],
+													"query": [
+														{
+															"key": "",
+															"value": "",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "user_shopping_cart",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDQ3NDU2NSwiZXhwIjoxNzA0NDc2MzY1fQ.ZMtcS7x2OIo7ot6UbxkPrOA7kDFrSGpAMW143ZaaFNw",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "count_shopping_cart_items",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDQ3NDcxMywiZXhwIjoxNzA0NDc2NTEzfQ.ekdoTj_hsKp_o4x4wn_OJlnhmu0V7v7iH1pR4MGzJSw",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart/count",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"count"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "final_price",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NDU5NiwiZXhwIjoxNzAzNzc2Mzk2fQ.CbtLLlWp7Z23X7sCXJF-YmNZRvyfugQNnCfWvBkU_eA",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart/total",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"total"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "decrease_amount_of_given_book",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzMjM5MywiZXhwIjoxNzAyOTM0MTkzfQ.MQevq9Av8t6GCP4MM9EPzW5wm1aBbV1h3yoTMkkaLAM",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart/decrease/1",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"decrease",
+														"1"
+													],
+													"query": [
+														{
+															"key": "",
+															"value": "",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "delete_from_shopping_cart",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzNDI2OCwiZXhwIjoxNzAyOTM2MDY4fQ.bOMnuvQEVM1mgKc3Mw673BtdLnzstidgtWFHUa7B-S8",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "",
+														"value": "",
+														"type": "text",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/cart/3",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"3"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "favorites",
+									"item": [
+										{
+											"name": "add_to_favorites",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzNjg1OSwiZXhwIjoxNzAyOTM4NjU5fQ.BLh6PRmizz126G2VhqwPdqtaPo5AAcZmwylsDGfeLKI",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/favorites/6",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites",
+														"6"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "user_favorite_books",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDQ4NDA3NCwiZXhwIjoxNzA0NDg1ODc0fQ.RPs7lcrYa3z-gne84Ze7qyqCjykgxdhUHPp28rCHvNc",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "limit",
+														"value": "2147483647",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/favorites",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "count_user_favorite_books",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDQ3NDcxMywiZXhwIjoxNzA0NDc2NTEzfQ.ekdoTj_hsKp_o4x4wn_OJlnhmu0V7v7iH1pR4MGzJSw",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/favorites/count",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites",
+														"count"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "delete_from_favorites",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzNDI2OCwiZXhwIjoxNzAyOTM2MDY4fQ.bOMnuvQEVM1mgKc3Mw673BtdLnzstidgtWFHUa7B-S8",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/favorites/3",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites",
+														"3"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "genres",
+									"item": [
+										{
+											"name": "get_all_available_genres",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/genres",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"genres"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "orders",
+									"item": [
+										{
+											"name": "assign_employee_to_order",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzNTI2NiwiZXhwIjoxNzAyOTM3MDY2fQ.F26h0ZJO4_m4CyKmD0DpY7dk0ktPmDrqlpBaLxsiTAg",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"orderId\": 1,\r\n    \"employeeId\": 1\r\n}"
+												},
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/orders/order/assign",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"orders",
+														"order",
+														"assign"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "update_order_status_to_pending",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYUBnbWFpbC5jb20iLCJpYXQiOjE3MDQ0OTkxOTksImV4cCI6MTcwNDUwMDk5OX0.8J9Kpveui0OkNc9I3Ym1lr8y2NbgS6pWYXN9zVsE9ng",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/orders/order/1/status/pending",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"orders",
+														"order",
+														"1",
+														"status",
+														"pending"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "orders",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYUBnbWFpbC5jb20iLCJpYXQiOjE3MDQ0OTY4MjQsImV4cCI6MTcwNDQ5ODYyNH0.UHeurwKTMT2371V9T4SODeiGk7FZTtZO5-vXMevKO4U",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/orders",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"orders"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "books",
+									"item": [
+										{
+											"name": "add_book",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzY5NTMwOCwiZXhwIjoxNzAzNjk3MTA4fQ.ylszSf9sK6bsw6A8Qr6civd3KdJNOL6Jxr36OR6ih6s",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"title\": \"test 4\",\r\n    \"author\": \"Adam Malysz\",\r\n    \"summary\": \"Short summary text\",\r\n    \"description\": \"very very long description\",\r\n    \"genre\": \"horror\",\r\n    \"numPages\": 155,\r\n    \"language\": \"english\",\r\n    \"price\": 120.35,\r\n    \"currency\": \"dollar\",\r\n    \"publisher\": \"Szaranowicz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/books/add",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"add"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "book",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/books/book/1",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"book",
+														"1"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "count_available_books",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/books/count",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"count"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "books_by_category",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/books/horror",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"horror"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "search_by_title_or_author",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/books/search?searchkey=Test 1",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"search"
+													],
+													"query": [
+														{
+															"key": "searchkey",
+															"value": "Test 1"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "bestsellers",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													},
+													{
+														"key": "limit",
+														"value": "10",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/books/bestsellers",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"bestsellers"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "recently_added_books",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													},
+													{
+														"key": "limit",
+														"value": "20",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{bookservice_localhost}}/bookapp/api/v1/books/recents",
+													"host": [
+														"{{bookservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"recents"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "test",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQyMjk1NywiZXhwIjoxNzAyNDI0NzU3fQ.kHQnf_2-Ht3joQ9AutDfu2cmT5Dt9Sq4VqA8qnbnWrI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{bookservice_localhost}}/bookapp/test",
+									"host": [
+										"{{bookservice_localhost}}"
+									],
+									"path": [
+										"bookapp",
+										"test"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "gateway",
+					"item": [
+						{
+							"name": "v1",
+							"item": [
+								{
+									"name": "cart",
+									"item": [
+										{
+											"name": "add_to_shopping_cart",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "amount",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart/3",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"3"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "submit_order",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart/submit",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"submit"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "increase_amount_of_given_book",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzMjM5MywiZXhwIjoxNzAyOTM0MTkzfQ.MQevq9Av8t6GCP4MM9EPzW5wm1aBbV1h3yoTMkkaLAM",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart/increase/1",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"increase",
+														"1"
+													],
+													"query": [
+														{
+															"key": "",
+															"value": "",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "user_shopping_cart",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "count_shopping_cart_items",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart/count",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"count"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "final_price",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart/total",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"total"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "decrease_amount_of_given_book",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzMjM5MywiZXhwIjoxNzAyOTM0MTkzfQ.MQevq9Av8t6GCP4MM9EPzW5wm1aBbV1h3yoTMkkaLAM",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart/decrease/1",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"decrease",
+														"1"
+													],
+													"query": [
+														{
+															"key": "",
+															"value": "",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "delete_from_shopping_cart",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzNDI2OCwiZXhwIjoxNzAyOTM2MDY4fQ.bOMnuvQEVM1mgKc3Mw673BtdLnzstidgtWFHUa7B-S8",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "",
+														"value": "",
+														"type": "text",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}"
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/cart/3",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"cart",
+														"3"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "favorites",
+									"item": [
+										{
+											"name": "add_to_favorites",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzNjg1OSwiZXhwIjoxNzAyOTM4NjU5fQ.BLh6PRmizz126G2VhqwPdqtaPo5AAcZmwylsDGfeLKI",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/favorites/3",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites",
+														"3"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "user_favorite_books",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "limit",
+														"value": "2147483647",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/favorites",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "count_user_favorite_books",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/favorites/count",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites",
+														"count"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "delete_from_favorites",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjkzNDI2OCwiZXhwIjoxNzAyOTM2MDY4fQ.bOMnuvQEVM1mgKc3Mw673BtdLnzstidgtWFHUa7B-S8",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/favorites/3",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"favorites",
+														"3"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "genres",
+									"item": [
+										{
+											"name": "get_all_available_genres",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/genres",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"genres"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "orders",
+									"item": [
+										{
+											"name": "assign_employee_to_order",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"orderId\": 1,\r\n    \"employeeId\": 1\r\n}"
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/orders/order/assign",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"orders",
+														"order",
+														"assign"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "update_order_status_to_pending",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/orders/order/1/status/pending",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"orders",
+														"order",
+														"1",
+														"status",
+														"pending"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "orders",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzc3NjYzNiwiZXhwIjoxNzAzNzc4NDM2fQ.R_JUnMXHaqyI4asrPEt4BXZI-uCqSWLTxRumZtcGsZo",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/orders",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"orders"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "books",
+									"item": [
+										{
+											"name": "add_book",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMzY5NTMwOCwiZXhwIjoxNzAzNjk3MTA4fQ.ylszSf9sK6bsw6A8Qr6civd3KdJNOL6Jxr36OR6ih6s",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"title\": \"test 2\",\r\n    \"author\": \"Adam Malysz\",\r\n    \"summary\": \"Short summary text\",\r\n    \"description\": \"very very long description\",\r\n    \"genre\": \"horror\",\r\n    \"numPages\": 155,\r\n    \"language\": \"english\",\r\n    \"price\": 120.35,\r\n    \"currency\": \"dollar\",\r\n    \"publisher\": \"Szaranowicz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/books/add",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"add"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "book",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/books/book/4",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"book",
+														"4"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "count_available_books Copy",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/books/count",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"count"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "books_by_category",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/books/horror",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"horror"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "search_by_title_or_author",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/books/search?searchkey=Test 1",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"search"
+													],
+													"query": [
+														{
+															"key": "searchkey",
+															"value": "Test 1"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "bestsellers",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													},
+													{
+														"key": "limit",
+														"value": "10",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/books/bestsellers",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"bestsellers"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "recently_added_books",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "currency",
+														"value": "USD",
+														"type": "text"
+													},
+													{
+														"key": "limit",
+														"value": "20",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/bookapp/api/v1/books/recents",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"bookapp",
+														"api",
+														"v1",
+														"books",
+														"recents"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "test",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwMjU1NjE3NiwiZXhwIjoxNzAyNTU3OTc2fQ.UXuPqlmNKDqJxr2YT7oFeK1ZcFwL1DaobmpFZNeFazo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/bookapp/test",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"bookapp",
+										"test"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "gpt-service",
+			"item": [
+				{
+					"name": "localhost",
+					"item": [
+						{
+							"name": "v1",
+							"item": [
+								{
+									"name": "notifications",
+									"item": [
+										{
+											"name": "v1_generate_welcome_message",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"messageLanguage\": \"Polish\",\r\n    \"name\": \"Marcin\",\r\n    \"surname\": \"Krolczyk\",\r\n    \"username\": \"mkrolczyk\"\r\n}"
+												},
+												"url": {
+													"raw": "{{gptservice_localhost}}/gptclient/api/v1/notifications/generate/welcomeMessage",
+													"host": [
+														"{{gptservice_localhost}}"
+													],
+													"path": [
+														"gptclient",
+														"api",
+														"v1",
+														"notifications",
+														"generate",
+														"welcomeMessage"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "v1_open_chat",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDU5MzExNiwiZXhwIjoxNzA0NTk0OTE2fQ.euckbLgi4Pcu7xU0_fY8dMkwV1kXIepJStfo2QkXQ-I",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"question\": \"Opowiedz żart w jednym zdaniu\"\r\n}"
+										},
+										"url": {
+											"raw": "{{gptservice_localhost}}/gptclient/api/v1/chat",
+											"host": [
+												"{{gptservice_localhost}}"
+											],
+											"path": [
+												"gptclient",
+												"api",
+												"v1",
+												"chat"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "v1_open_transcription",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDU5MzExNiwiZXhwIjoxNzA0NTk0OTE2fQ.euckbLgi4Pcu7xU0_fY8dMkwV1kXIepJStfo2QkXQ-I",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"file\": \"xxxxx\"\r\n}"
+										},
+										"url": {
+											"raw": "{{gptservice_localhost}}/gptclient/api/v1/transcription",
+											"host": [
+												"{{gptservice_localhost}}"
+											],
+											"path": [
+												"gptclient",
+												"api",
+												"v1",
+												"transcription"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gptservice_localhost}}/gptclient/actuator",
+									"host": [
+										"{{gptservice_localhost}}"
+									],
+									"path": [
+										"gptclient",
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "gateway",
+					"item": [
+						{
+							"name": "v1",
+							"item": [
+								{
+									"name": "notifications",
+									"item": [
+										{
+											"name": "v1_generate_welcome_message",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"messageLanguage\": \"Polish\",\r\n    \"name\": \"Marcin\",\r\n    \"surname\": \"Krolczyk\",\r\n    \"username\": \"mkrolczyk\"\r\n}"
+												},
+												"url": {
+													"raw": "{{gatewayservice_localhost}}/gptclient/api/v1/notifications/generate/welcomeMessage",
+													"host": [
+														"{{gatewayservice_localhost}}"
+													],
+													"path": [
+														"gptclient",
+														"api",
+														"v1",
+														"notifications",
+														"generate",
+														"welcomeMessage"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "v1_open_chat",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDU5MzExNiwiZXhwIjoxNzA0NTk0OTE2fQ.euckbLgi4Pcu7xU0_fY8dMkwV1kXIepJStfo2QkXQ-I",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "pl",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"question\": \"Opowiedz żart w jednym zdaniu\"\r\n}"
+										},
+										"url": {
+											"raw": "{{gatewayservice_localhost}}/gptclient/api/v1/chat",
+											"host": [
+												"{{gatewayservice_localhost}}"
+											],
+											"path": [
+												"gptclient",
+												"api",
+												"v1",
+												"chat"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "v1_open_transcription",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWtpZW9vQGdtYWlsLmNvbSIsImlhdCI6MTcwNDU5MzExNiwiZXhwIjoxNzA0NTk0OTE2fQ.euckbLgi4Pcu7xU0_fY8dMkwV1kXIepJStfo2QkXQ-I",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "pl",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"file\": \"xxxxx\"\r\n}"
+										},
+										"url": {
+											"raw": "{{gatewayservice_localhost}}/gptclient/api/v1/transcription",
+											"host": [
+												"{{gatewayservice_localhost}}"
+											],
+											"path": [
+												"gptclient",
+												"api",
+												"v1",
+												"transcription"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/gptclient/actuator",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"gptclient",
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "notifications-service",
+			"item": [
+				{
+					"name": "localhost",
+					"item": [
+						{
+							"name": "actuator",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{notificationsservice_localhost}}/notifications/actuator",
+									"host": [
+										"{{notificationsservice_localhost}}"
+									],
+									"path": [
+										"notifications",
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "gateway",
+					"item": [
+						{
+							"name": "actuator",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{gatewayservice_localhost}}/notifications/actuator",
+									"host": [
+										"{{gatewayservice_localhost}}"
+									],
+									"path": [
+										"notifications",
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
