@@ -6,7 +6,7 @@ This folder is intended for development and testing purposes only. It should not
 
 1. Launch docker. </br >
 
-2. Go to 'infrastructure/local' (the same directory where this README.md file is placed) in terminal and type
+2. Go to 'backend/infrastructure/local' (the same directory where this README.md file is placed) in terminal and type
 ```
 $ docker-compose up
 ```
@@ -15,7 +15,7 @@ Docker containers in terminal BACKGROUND option:
 $ docker-compose up -d
 ```
 
-All containers local metrics/data e.t.c will be written under 'infrastructure/local/containers-data' folder.
+All containers local metrics/data e.t.c will be written under 'backend/infrastructure/local/containers-data' folder.
 
 ## How to STOP local env
 
@@ -24,7 +24,7 @@ All containers local metrics/data e.t.c will be written under 'infrastructure/lo
 $ docker-compose down
 ```
 
-2. [OPTIONAL] Remove 'containers-data' folder from 'infrastructure/local' directory.
+2. [OPTIONAL] Remove 'containers-data' folder from 'backend/infrastructure/local' directory.
 
 If step 2 proceeded, after new start docker will create new resources (database e.t.c), if not, will use existing ones.
 
@@ -32,4 +32,10 @@ If step 2 proceeded, after new start docker will create new resources (database 
 
 ```
 $ docker-compose -f common.yml -f postgres_database.yml up
+```
+
+## How to START ONLY PostgresDB and RabbitMQ (for testing)
+
+```
+$ docker-compose -f common.yml -f postgres_database.yml -f rabbitmq.yml up
 ```
