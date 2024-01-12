@@ -89,7 +89,7 @@ With Bookshop, you can easily discover and purchase your favorite books, explore
 
 1. Go to 'backend/infrastructure/local' directory and make own copy of '.env.sample.' file. Save it as '.env' in same place.
 2. Set up values for SPRING_SECURITY_SECRET, OPENAI_API_KEY and SPRING_MAIL_PASSWORD inside .env file.
-3. Run ```mvn clean install``` command (this command will build and install docker images for all services).
+3. Run ```mvn clean install -DskipTests``` command (this command will build and install docker images for all services).
 4. Return to 'backend/infrastructure' folder and follow local environment start guide instructions.
 5. Go to 'frontend/bookshop-app' folder and run ```npm install``` command (this command will install all necessary packages/libs for FE app)
 6. Start frontend application in development mode by running ```npm start``` command.
@@ -154,7 +154,7 @@ As project evolves, RabbitMQ will continue to be a central component for impleme
 
 ![Start page](./frontend/doc/ui/pc_start-page.png)
 
-### Contact
+### Contact page
 
 ![Contact](./frontend/doc/ui/pc_contact-page.png)
 
@@ -162,11 +162,11 @@ As project evolves, RabbitMQ will continue to be a central component for impleme
 
 ![Login page](./frontend/doc/ui/pc_login-page.png)
 
-### Register
+### Register page
 
 ![Register](./frontend/doc/ui/pc_register-page.png)
 
-### Register personalized welcome email
+### Register event personalized welcome email
 
 #### Register operation
 ![Register operation notification](./frontend/doc/ui/notification1.png)
