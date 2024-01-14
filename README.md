@@ -6,21 +6,21 @@ the bookstore aims to provide a convenient and enjoyable shopping experience for
 
 ## Table of Contents
 
-- [Project Overview](#project-overview)
+- [General Overview](#general-overview)
 - [Features](#features)
-- [Project Modules](#project-modules)
+- [Project Architecture](#project-architecture)
+- [External Services](#external-services)
 - [Technologies](#technologies)
-- [External services](#external-services)
-- [Requirements](#requirements)
-- [Getting Started](#getting-started)
 - [Database Information](#database-information)
 - [RabbitMQ Information](#rabbitmq-information)
+- [Repository Modules](#repository-modules)
+- [Getting Started](#getting-started)
 - [API Endpoints](#api-endpoints)
 - [Usage](#usage-examples)
 - [Status](#status)
 - [Contact Page](#contact-page)
 
-## Project Overview
+## General Overview
 
 Bookshop is a comprehensive online bookstore that offers a wide range of books catering to all interests.
 With Bookshop, you can easily discover and purchase your favorite books, explore various genres, and stay updated with the latest releases.
@@ -47,17 +47,11 @@ With Bookshop, you can easily discover and purchase your favorite books, explore
 - Order Assignment: Staff members can take ownership of assigned orders.
 - And more.
 
-## Project Modules
+## Project Architecture
 
-```
-.
-├── .github       # CI/CD. Contains Github action workflow(s)
-├── backend       # Backend part of bookshop
-├── frontend      # Frontend part of bookshop
-.
-```
+![Project Architecture](./backend/doc/architecture.png)
 
-## External services
+## External Services
 - OpenAI API
 - React Leaflet
 - Font Awesome
@@ -69,7 +63,7 @@ With Bookshop, you can easily discover and purchase your favorite books, explore
 - Spring Boot 3
 - Maven
 - RabbitMQ
-- PostgresSQL database
+- PostgreSQL database
 - Liquibase
 - Docker & Docker Compose
 - React.js
@@ -77,23 +71,6 @@ With Bookshop, you can easily discover and purchase your favorite books, explore
 - Node Package Manager
 - HTML
 - CSS
-
-## Requirements
-
-- Git version control system
-- Maven
-- Node Package Manager
-- Docker
-
-## Getting Started
-
-1. Go to 'backend/infrastructure/local' directory and make own copy of '.env.sample.' file. Save it as '.env' in same place.
-2. Set up values for SPRING_SECURITY_SECRET, OPENAI_API_KEY and SPRING_MAIL_PASSWORD inside .env file.
-3. Run ```mvn clean install -DskipTests``` command (this command will build and install docker images for all services).
-4. Return to 'backend/infrastructure' folder and follow local environment start guide instructions.
-5. Go to 'frontend/bookshop-app' folder and run ```npm install``` command (this command will install all necessary packages/libs for FE app)
-6. Start frontend application in development mode by running ```npm start``` command.
-7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Database Information
 
@@ -131,6 +108,34 @@ RabbitMQ facilitates the creation and delivery of custom notifications, ensuring
 
 - Future Enhancements:
 As project evolves, RabbitMQ will continue to be a central component for implementing additional features and functionalities, such as user-specific recommendations, activity alerts, and more.
+
+## Repository Modules
+
+```
+.
+├── .github       # CI/CD. Contains Github action workflow(s)
+├── backend       # Backend part of bookshop
+├── frontend      # Frontend part of bookshop
+.
+```
+
+## Getting Started
+
+### Requirements
+- Git version control system
+- Maven
+- Node Package Manager
+- Docker
+
+### Start Guide
+
+1. Go to 'backend/infrastructure/local' directory and make own copy of '.env.sample.' file. Save it as '.env' in same place.
+2. Set up values for SPRING_SECURITY_SECRET, OPENAI_API_KEY and SPRING_MAIL_PASSWORD inside .env file.
+3. Run ```mvn clean install -DskipTests``` command (this command will build and install docker images for all services).
+4. Return to 'backend/infrastructure' folder and follow local environment start guide instructions.
+5. Go to 'frontend/bookshop-app' folder and run ```npm install``` command (this command will install all necessary packages/libs for FE app)
+6. Start frontend application in development mode by running ```npm start``` command.
+7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## API Endpoints
 
