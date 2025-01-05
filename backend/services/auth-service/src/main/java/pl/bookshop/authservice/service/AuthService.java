@@ -10,8 +10,11 @@ import pl.bookshop.auth.util.exception.dto.ValidationErrorList;
 import pl.bookshop.auth.util.messages.MessagesEnum;
 import pl.bookshop.auth.util.service.repository.UserInfoRepository;
 import pl.bookshop.auth.util.dto.EmployeesListDto;
+import pl.bookshop.authservice.clients.RabbitMQAuthNotificationProducer;
 import pl.bookshop.authservice.clients.RabbitMQWelcomeMsgQueueProducer;
+import pl.bookshop.authservice.dto.AuthNotificationEvent;
 import pl.bookshop.authservice.dto.UserRegisterSuccessEvent;
+import pl.bookshop.authservice.dto.request.NotificationRequest;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -20,7 +23,9 @@ import java.util.function.Predicate;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final RabbitMQWelcomeMsgQueueProducer rabbitMQProducer;
+    private final RabbitMQWelcomeMsgQueueProducer rabbitMQWelcomeMsgQueueProducer;
+
+    private final RabbitMQAuthNotificationProducer rabbitMQAuthNotificationProducer;
 
     private final UserInfoRepository repository;
 
@@ -38,13 +43,25 @@ public class AuthService {
 
         UserInfo newUser = repository.save(userInfo);
         // TODO -> register events should be send to rabbitMQ asynchronously
-        rabbitMQProducer
+        rabbitMQWelcomeMsgQueueProducer
                 .sendMessage(UserRegisterSuccessEvent.builder()
                         .messageLanguage("polish") // TODO -> temporary workaround; set language from frontend app settings
                         .email(newUser.getEmail())
                         .name(newUser.getName())
                         .surname(newUser.getSurname())
                         .username(newUser.getUsername())
+                        .build());
+    }
+
+    @Transactional
+    public void sendNotification(NotificationRequest req) {
+
+        // TODO -> register events should be send to rabbitMQ asynchronously
+        rabbitMQAuthNotificationProducer
+                .sendMessage(AuthNotificationEvent.builder()
+                        .channel(req.getChannel())
+                        .receiver(req.getReceiver())
+                        .content(req.getContent())
                         .build());
     }
 

@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.bookshop.auth.util.annotation.AdminAuthority;
 import pl.bookshop.auth.util.annotation.EmployeeAuthority;
 import pl.bookshop.auth.util.dto.EmployeesListDto;
-import pl.bookshop.authservice.dto.request.AuthRequest;
-import pl.bookshop.authservice.dto.request.EmailValidationRequest;
-import pl.bookshop.authservice.dto.request.RegisterRequest;
-import pl.bookshop.authservice.dto.request.UserNameValidationRequest;
+import pl.bookshop.authservice.dto.request.*;
 import pl.bookshop.authservice.dto.response.AuthResponse;
 import pl.bookshop.authservice.service.AuthService;
 import pl.bookshop.auth.util.config.UserInfoUserDetails;
@@ -48,6 +45,12 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@DTO(RegisterRequest.class) UserInfo userInfo) {
         authService.registerUser(userInfo);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/notification")
+    public ResponseEntity<?> sendNotification(@RequestBody NotificationRequest notificationRequest) {
+        authService.sendNotification(notificationRequest);
         return ResponseEntity.ok().build();
     }
 

@@ -16,20 +16,20 @@ public class RabbitMQWelcomeMsgQueueConfig {
     public static final String RABBITMQ_ROUTING_KEY = "welcomemessage_key";
 
     @Bean
-    public Queue queue(){
+    public Queue welcomeMessageQueue(){
         return new Queue(RABBITMQ_QUEUE);
     }
 
     @Bean
-    public TopicExchange exchange(){
+    public TopicExchange welcomeMessageExchange(){
         return new TopicExchange(RABBITMQ_EXCHANGE);
     }
 
     @Bean
-    public Binding binding() {
+    public Binding welcomeMessageBinding() {
         return BindingBuilder
-                .bind(queue())
-                .to(exchange())
+                .bind(welcomeMessageQueue())
+                .to(welcomeMessageExchange())
                 .with(RABBITMQ_ROUTING_KEY);
     }
 }

@@ -10,23 +10,23 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class RabbitMQWelcomeMessageQueueConfig {
+public class RabbitMQAuthNotificationsQueueConfig {
 
     @Bean
-    public Queue welcomeMessageQueue() {
-        return new Queue("pl.bookshop.user.welcome.message");
+    public Queue authNotificationsQueue() {
+        return new Queue("pl.bookshop.auth.notification.message");
     }
 
     @Bean
-    public TopicExchange welcomeMessageExchange(){
-        return new TopicExchange("welcomemessage_exchange");
+    public TopicExchange authNotificationsExchange(){
+        return new TopicExchange("authnotification_exchange");
     }
 
     @Bean
-    public Binding welcomeMessageBinding() {
+    public Binding authNotificationsBinding() {
         return BindingBuilder
-                .bind(welcomeMessageQueue())
-                .to(welcomeMessageExchange())
-                .with("welcomemessage_key");
+                .bind(authNotificationsQueue())
+                .to(authNotificationsExchange())
+                .with("authnotification_key");
     }
 }
