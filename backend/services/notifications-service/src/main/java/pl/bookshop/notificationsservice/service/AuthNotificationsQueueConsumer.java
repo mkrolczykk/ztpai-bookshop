@@ -61,16 +61,16 @@ public class AuthNotificationsQueueConsumer {
                     }
                 }
                 case TELEGRAM -> {
-                    log.info("Telegram");
+                    log.info("sent notification to Telegram");
                 }
                 case PUSH -> {
-                    log.info("Push");
+                    log.info("created Push notification");
                 }
                 case SMS -> {
-                    log.info("SMS");
+                    log.info("sent SMS");
                 }
                 case WHATSAPP -> {
-                    log.info("Whatsapp");
+                    log.info("sent notification to Whatsapp");
                 }
                 case UNKNOWN -> {
                     log.error("UNKNOWN CHANNEL");
